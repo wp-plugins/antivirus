@@ -228,7 +228,7 @@ $results = array();
 }
 }
 if (!$results) {
-preg_match('/([a-zA-Z0-9]{' .strlen(base64_encode('sergej+sweta=love')). ',})/', $line, $matches);
+preg_match('/([a-zA-Z0-9]{' .(strlen(base64_encode('sergej+sweta=love')) * 2). ',})/', $line, $matches);
 $results = @$matches[1];
 }
 if ($results) {
