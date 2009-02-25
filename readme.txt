@@ -1,6 +1,6 @@
 === Antispam Bee ===
 Contributors: stalkerX
-Tags: antivirus, virus, antispam, spam
+Tags: antivirus, virus, antispam, spam, scanner
 Requires at least: 2.5
 Tested up to: 2.7.1
 Stable tag: trunk
