@@ -1,4 +1,4 @@
-=== Antispam Bee ===
+=== AntiVirus ===
 Contributors: stalkerX
 Tags: antivirus, virus, antispam, spam, scanner
 Requires at least: 2.5
@@ -8,7 +8,9 @@ Stable tag: trunk
 AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections
 
 == Description ==
-coming soon...
+AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections
+
+More coming soon...
 
 Please visit the [AntiVirus for WordPress homepage](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress homepage") for more information.
 
