@@ -8,9 +8,13 @@ Stable tag: trunk
 AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections
 
 == Description ==
-AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections
+= AntiVirus protection for your blog =
+AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections.
 
-More coming soon...
+= At a Glance =
+* Quick & Dirty: activate, check, done!
+* Manual testing with immediate result of the infected files
+* Automatic testing with notification
 
 Please visit the [AntiVirus for WordPress homepage](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress homepage") for more information.
 
