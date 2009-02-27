@@ -15,6 +15,7 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 * Quick & Dirty: activate, check, done!
 * Manual testing with immediate result of the infected files
 * Automatic testing with notification
+* Whitelist: Mark as no virus
 * English and German
 
 Please visit the [AntiVirus for WordPress homepage](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress homepage") for more information.

@@ -6,9 +6,6 @@ if (defined('WP_UNINSTALL_PLUGIN')) {
 		}
  	}
  	
-	delete_option('antivirus_cronjob_enable');
-	delete_option('antivirus_cronjob_timestamp');
-	
-	$GLOBALS['wpdb']->query("OPTIMIZE TABLE `" .$GLOBALS['wpdb']->options. "`");
+	delete_option('antivirus');
 }
 ?>
