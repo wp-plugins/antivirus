@@ -28,7 +28,7 @@ msgid "View line"
 msgstr "Linie"
 
 msgid "There is no virus"
-msgstr "There is no virus"
+msgstr "Nu este virus"
 
 msgid "Scan finished"
 msgstr "Scanare finalizată"
@@ -43,7 +43,7 @@ msgid "Manual scan"
 msgstr "Scanare manuală"
 
 msgid "Scan the templates now"
-msgstr "Scanează directorul temei active acum"
+msgstr "Scanează acum directorul temei active"
 
 msgid "About AntiVirus"
 msgstr "Despre AntiVirus"
