@@ -39,15 +39,15 @@ msgstr "Prüfung abgeschlossen"
 msgid "Enable the daily antivirus scan and send me an email if suspicion on a virus"
 msgstr "Templates täglich überprüfen und bei Verdacht eine E-Mail senden"
 
-msgid "Never executed"
-msgstr "Noch nie ausgeführt"
-
 msgid "Manual scan"
 msgstr "Manuelle Prüfung"
 
 msgid "Scan the templates now"
 msgstr "Templates jetzt manuell prüfen"
 
-msgid "About AntiVirus"
-msgstr "Über AntiVirus"
+msgid "About"
+msgstr "Über"
+
+msgid "Donate"
+msgstr "Spende"
 

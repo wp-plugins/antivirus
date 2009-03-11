@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AntiVirus Wordpress Plugin\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: Sergej Müller\n"
+"Last-Translator: Sergej Müller <smueller@ebiene.de>\n"
 "Language-Team: relijoc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,15 +36,15 @@ msgstr "Scanare finalizată"
 msgid "Enable the daily antivirus scan and send me an email if suspicion on a virus"
 msgstr "Scanează zilnic directorul temei active şi în caz de suspiciune trimite un email către admin "
 
-msgid "Never executed"
-msgstr "Nici un scan efectuat încă"
-
 msgid "Manual scan"
 msgstr "Scanare manuală"
 
 msgid "Scan the templates now"
 msgstr "Scanează acum directorul temei active"
 
-msgid "About AntiVirus"
-msgstr "Despre AntiVirus"
+msgid "About"
+msgstr "Despre"
+
+msgid "Donate"
+msgstr "Donaţii"
 

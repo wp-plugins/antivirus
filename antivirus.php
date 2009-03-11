@@ -106,7 +106,7 @@ function init_plugin_options() {
 $GLOBALS['AV_WPlize']->init_option(
 array(
 'cronjob_enable'=> 0,
-'cronjob_timestamp'=> 0,
+'cronjob_timestamp' => 0,
 'white_list'=> ''
 )
 );
@@ -315,7 +315,7 @@ if ($content = $this->get_file_content($file)) {
 $results = array();
 foreach($content as $num => $line) {
 if ($result = $this->check_file_line($line, $num)) {
-$results[$num] = $result;
+$results[$num + 1] = $result;
 }
 }
 return $results;
@@ -345,10 +345,14 @@ wp_die('You do not have permission to access!');
 function show_plugin_info() {
 $data = get_plugin_data(__FILE__);
 echo sprintf(
-__('Plugin'). ': %1$s | ' . __('Version'). ': %2$s | ' .__('Author'). ': %3$s<br />',
+'%1$s: %2$s | %3$s: %4$s | %5$s: %6$s | %7$s: <a href="http://playground.ebiene.de/donate/">PayPal</a><br />',
+__('Plugin'),
 __('AntiVirus for WordPress', 'antivirus'),
+__('Version'),
 $data['Version'],
-$data['Author']
+__('Author'),
+$data['Author'],
+__('Donate', 'antivirus')
 );
 }
 function show_plugin_head() {
@@ -584,11 +588,7 @@ AntiVirus
 <label for="antivirus_cronjob_enable">
 <input type="checkbox" name="antivirus_cronjob_enable" id="antivirus_cronjob_enable" value="1" <?php checked($GLOBALS['AV_WPlize']->get_option('cronjob_enable'), 1) ?> />
 <?php _e('Enable the daily antivirus scan and send me an email if suspicion on a virus', 'antivirus') ?>
-<span class="setting-description">(<?php if ($GLOBALS['AV_WPlize']->get_option('cronjob_timestamp')) {
-echo __('Last', 'antivirus'). ': '. date_i18n('d.m.Y H:i:s', $GLOBALS['AV_WPlize']->get_option('cronjob_timestamp'));
-} else {
-_e('Never executed', 'antivirus');
-} ?>)</span>
+<?php echo ($GLOBALS['AV_WPlize']->get_option('cronjob_timestamp') ? ('&nbsp;<span class="setting-description">(' .__('Last', 'antivirus'). ': ' .date_i18n('d.m.Y H:i:s', $GLOBALS['AV_WPlize']->get_option('cronjob_timestamp')). ')</span>') : '') ?>
 </label>
 </td>
 </tr>
@@ -610,7 +610,7 @@ _e('Never executed', 'antivirus');
 </div>
 <div class="postbox">
 <h3>
-<?php _e('About AntiVirus', 'antivirus') ?>
+<?php _e('About', 'antivirus') ?>
 </h3>
 <div class="inside">
 <p>
