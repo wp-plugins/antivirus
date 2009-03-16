@@ -315,7 +315,7 @@ if ($content = $this->get_file_content($file)) {
 $results = array();
 foreach($content as $num => $line) {
 if ($result = $this->check_file_line($line, $num)) {
-$results[$num + 1] = $result;
+$results[$num] = $result;
 }
 }
 return $results;
@@ -484,7 +484,7 @@ width: '97%'
 var i = 0;
 var len = lines.length;
 for (i; i < len; i = i + 3) {
-var num = lines[i];
+var num = parseInt(lines[i]) + 1;
 var line = lines[i + 1].replace('@span@', '<span>').replace('@/span@', '</span>');
 var md5 = lines[i + 2];
 output.append('<p><a href="#" id="' + md5 + '"><?php echo _e("There is no virus", "antivirus") ?></a> <a href="theme-editor.php?file=' + content + '" target="_blank"><?php echo _e("View line", "antivirus") ?> ' + num + '</a><code>' + line + "</code></p>");
