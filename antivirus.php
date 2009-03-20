@@ -35,6 +35,9 @@ define('WP_ADMIN_URL', rtrim(admin_url(), '/'));
 } else {
 define('WP_ADMIN_URL', get_option('siteurl'). '/wp-admin');
 }
+if (!defined('AVBASENAME')) {
+define('AVBASENAME', plugin_basename(__FILE__));
+}
 if (is_admin()) {
 load_plugin_textdomain(
 'antivirus',
@@ -51,13 +54,12 @@ $this,
 )
 );
 add_action(
-'activate_' .plugin_basename(__FILE__),
+'activate_' .AVBASENAME,
 array(
 $this,
 'init_plugin_options'
 )
 );
-if (basename($_SERVER['REQUEST_URI']) == 'antivirus.php') {
 add_action(
 'admin_head',
 array(
@@ -65,7 +67,6 @@ $this,
 'show_plugin_head'
 )
 );
-}
 add_filter(
 'plugin_action_links',
 array(
@@ -87,13 +88,12 @@ $this,
 }
 }
 function init_action_links($links, $file) {
-$plugin = plugin_basename(__FILE__);
-if ($file == $plugin) {
+if ($file == AVBASENAME) {
 return array_merge(
 array(
 sprintf(
 '<a href="options-general.php?page=%s">%s</a>',
-$plugin,
+AVBASENAME,
 __('Settings')
 )
 ),
@@ -356,6 +356,9 @@ __('Donate', 'antivirus')
 );
 }
 function show_plugin_head() {
+if ($_REQUEST['page'] != AVBASENAME) {
+return false;
+}
 wp_enqueue_script('jquery') ?>
 <style type="text/css">
 <?php if ($this->check_plugins_url()) { ?>
