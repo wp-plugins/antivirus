@@ -14,7 +14,7 @@ function AntiVirus() {
 if (!class_exists('WPlize')) {
 require_once('inc/wplize.class.php');
 }
-$GLOBALS['AV_WPlize'] = new WPlize('antivirus');
+$this->WPlize = new WPlize('antivirus');
 if (defined('DOING_AJAX')) {
 add_action(
 'wp_ajax_get_ajax_response',
@@ -35,9 +35,6 @@ define('WP_ADMIN_URL', rtrim(admin_url(), '/'));
 } else {
 define('WP_ADMIN_URL', get_option('siteurl'). '/wp-admin');
 }
-if (!defined('AVBASENAME')) {
-define('AVBASENAME', plugin_basename(__FILE__));
-}
 if (is_admin()) {
 load_plugin_textdomain(
 'antivirus',
@@ -54,7 +51,7 @@ $this,
 )
 );
 add_action(
-'activate_' .AVBASENAME,
+'activate_' .plugin_basename(__FILE__),
 array(
 $this,
 'init_plugin_options'
@@ -88,12 +85,12 @@ $this,
 }
 }
 function init_action_links($links, $file) {
-if ($file == AVBASENAME) {
+if ($file == plugin_basename(__FILE__)) {
 return array_merge(
 array(
 sprintf(
 '<a href="options-general.php?page=%s">%s</a>',
-AVBASENAME,
+plugin_basename(__FILE__),
 __('Settings')
 )
 ),
@@ -103,7 +100,7 @@ $links
 return $links;
 }
 function init_plugin_options() {
-$GLOBALS['AV_WPlize']->init_option(
+$this->WPlize->init_option(
 array(
 'cronjob_enable'=> 0,
 'cronjob_timestamp' => 0,
@@ -122,7 +119,7 @@ wp_schedule_event(time(), 'daily', 'antivirus_daily_cronjob');
 function init_admin_menu() {
 add_options_page(
 'AntiVirus',
-($this->check_plugins_url() ? '<img src="' .plugins_url('antivirus/img/icon.png'). '" width="11" height="9" alt="AntiVirus Icon" />' : ''). 'AntiVirus',
+($this->is_wp_27() ? '<img src="' .plugins_url('antivirus/img/icon.png'). '" width="11" height="9" alt="AntiVirus Icon" />' : ''). 'AntiVirus',
 9,
 __FILE__,
 array(
@@ -132,10 +129,10 @@ $this,
 );
 }
 function exe_daily_cronjob() {
-if (!$GLOBALS['AV_WPlize']->get_option('cronjob_enable') || ($GLOBALS['AV_WPlize']->get_option('cronjob_timestamp') + (60 * 60) > time())) {
+if (!$this->WPlize->get_option('cronjob_enable') || ($this->WPlize->get_option('cronjob_timestamp') + (60 * 60) > time())) {
 return;
 }
-$GLOBALS['AV_WPlize']->update_option('cronjob_timestamp', time());
+$this->WPlize->update_option('cronjob_timestamp', time());
 if ($this->check_theme_files()) {
 load_plugin_textdomain(
 'antivirus',
@@ -176,7 +173,7 @@ return false;
 function get_white_list() {
 return explode(
 ':',
-$GLOBALS['AV_WPlize']->get_option('white_list')
+$this->WPlize->get_option('white_list')
 );
 }
 function get_ajax_response() {
@@ -206,7 +203,7 @@ $values[] = md5($num . $string);
 break;
 case 'update_white_list':
 if ($_POST['_file_md5']) {
-$GLOBALS['AV_WPlize']->update_option(
+$this->WPlize->update_option(
 'white_list',
 implode(
 ':',
@@ -334,8 +331,8 @@ return $results;
 }
 return false;
 }
-function check_plugins_url() {
-return version_compare($GLOBALS['wp_version'], '2.6.999', '>') && function_exists('plugins_url');
+function is_wp_27() {
+return version_compare($GLOBALS['wp_version'], '2.6.999', '>');
 }
 function check_user_can() {
 if (current_user_can('manage_options') === false || current_user_can('edit_plugins') === false || !is_user_logged_in()) {
@@ -356,12 +353,12 @@ __('Donate', 'antivirus')
 );
 }
 function show_plugin_head() {
-if ($_REQUEST['page'] != AVBASENAME) {
+if ($_REQUEST['page'] != plugin_basename(__FILE__)) {
 return false;
 }
 wp_enqueue_script('jquery') ?>
 <style type="text/css">
-<?php if ($this->check_plugins_url()) { ?>
+<?php if ($this->is_wp_27()) { ?>
 .icon32 {
 background: url(<?php echo plugins_url('antivirus/img/icon32.png') ?>) no-repeat;
 }
@@ -556,7 +553,7 @@ function show_admin_menu() {
 $this->check_user_can();
 if (isset($_POST) && !empty($_POST)) {
 check_admin_referer('antivirus');
-$GLOBALS['AV_WPlize']->update_option(
+$this->WPlize->update_option(
 array(
 'cronjob_enable' => $_POST['antivirus_cronjob_enable']
 )
@@ -571,7 +568,7 @@ array(
 </div>
 <?php } ?>
 <div class="wrap">
-<?php if ($this->check_plugins_url()) { ?>
+<?php if ($this->is_wp_27()) { ?>
 <div class="icon32"><br /></div>
 <?php } ?>
 <h2>
@@ -589,9 +586,9 @@ AntiVirus
 <tr>
 <td>
 <label for="antivirus_cronjob_enable">
-<input type="checkbox" name="antivirus_cronjob_enable" id="antivirus_cronjob_enable" value="1" <?php checked($GLOBALS['AV_WPlize']->get_option('cronjob_enable'), 1) ?> />
+<input type="checkbox" name="antivirus_cronjob_enable" id="antivirus_cronjob_enable" value="1" <?php checked($this->WPlize->get_option('cronjob_enable'), 1) ?> />
 <?php _e('Enable the daily antivirus scan and send me an email if suspicion on a virus', 'antivirus') ?>
-<?php echo ($GLOBALS['AV_WPlize']->get_option('cronjob_timestamp') ? ('&nbsp;<span class="setting-description">(' .__('Last', 'antivirus'). ': ' .date_i18n('d.m.Y H:i:s', $GLOBALS['AV_WPlize']->get_option('cronjob_timestamp')). ')</span>') : '') ?>
+<?php echo ($this->WPlize->get_option('cronjob_timestamp') ? ('&nbsp;<span class="setting-description">(' .__('Last', 'antivirus'). ': ' .date_i18n('d.m.Y H:i:s', $this->WPlize->get_option('cronjob_timestamp')). ')</span>') : '') ?>
 </label>
 </td>
 </tr>
