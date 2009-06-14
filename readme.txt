@@ -18,7 +18,7 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 * Whitelist: Mark as no virus
 * English, German, Italian
 
-Please visit the [AntiVirus for WordPress homepage](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress homepage") for more information.
+Please visit the [AntiVirus for WordPress homepage](http://wpantivirus.com "AntiVirus for WordPress homepage") for more information.
 
 == Installation ==
 1. Download *AntiVirus* plugin
@@ -29,4 +29,4 @@ Please visit the [AntiVirus for WordPress homepage](http://playground.ebiene.de/
 1. Edit settings
 1. Ready
 
-Please visit the [AntiVirus for WordPress homepage](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress homepage") for further details.
+Please visit the [AntiVirus for WordPress homepage](http://wpantivirus.com "AntiVirus for WordPress homepage") for further details.

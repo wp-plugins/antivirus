@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: AntiVirus
-Plugin URI: http://playground.ebiene.de/1577/antivirus-wordpress-plugin/
+Plugin URI: http://wpantivirus.com
 Description: AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections
 Author: Sergej M&uuml;ller
 Version: 0.2
