@@ -4,8 +4,8 @@ Plugin Name: AntiVirus
 Plugin URI: http://wpantivirus.com
 Description: AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections
 Author: Sergej M&uuml;ller
-Version: 0.2
-Author URI: http://wp-coder.de
+Version: 0.3
+Author URI: http://wpcoder.de
 */
 
 
@@ -64,6 +64,24 @@ $this,
 'show_plugin_head'
 )
 );
+add_action(
+'admin_notices',
+array(
+$this,
+'show_admin_notices'
+)
+);
+if ($this->is_min_wp('2.8')) {
+add_filter(
+'plugin_row_meta',
+array(
+$this,
+'init_row_meta'
+),
+10,
+2
+);
+} else {
 add_filter(
 'plugin_action_links',
 array(
@@ -73,6 +91,7 @@ $this,
 10,
 2
 );
+}
 } else {
 add_action(
 'antivirus_daily_cronjob',
@@ -85,12 +104,13 @@ $this,
 }
 }
 function init_action_links($links, $file) {
-if ($file == plugin_basename(__FILE__)) {
+$plugin = plugin_basename(__FILE__);
+if ($file == $plugin) {
 return array_merge(
 array(
 sprintf(
 '<a href="options-general.php?page=%s">%s</a>',
-plugin_basename(__FILE__),
+$plugin,
 __('Settings')
 )
 ),
@@ -99,12 +119,30 @@ $links
 }
 return $links;
 }
+function init_row_meta($links, $file) {
+$plugin = plugin_basename(__FILE__);
+if ($file == $plugin) {
+return array_merge(
+$links,
+array(
+sprintf(
+'<a href="options-general.php?page=%s">%s</a>',
+$plugin,
+__('Settings')
+)
+)
+);
+}
+return $links;
+}
 function init_plugin_options() {
 $this->WPlize->init_option(
 array(
+'cronjob_alert'=> 0,
 'cronjob_enable'=> 0,
 'cronjob_timestamp' => 0,
-'white_list'=> ''
+'white_list'=> '',
+'notify_email'=> ''
 )
 );
 if (function_exists('wp_schedule_event') === true) {
@@ -119,7 +157,7 @@ wp_schedule_event(time(), 'daily', 'antivirus_daily_cronjob');
 function init_admin_menu() {
 add_options_page(
 'AntiVirus',
-($this->is_wp_27() ? '<img src="' .plugins_url('antivirus/img/icon.png'). '" width="11" height="9" alt="AntiVirus Icon" />' : ''). 'AntiVirus',
+($this->is_min_wp('2.7') ? '<img src="' .plugins_url('antivirus/img/icon.png'). '" width="11" height="9" alt="AntiVirus Icon" />' : ''). 'AntiVirus',
 9,
 __FILE__,
 array(
@@ -132,7 +170,10 @@ function exe_daily_cronjob() {
 if (!$this->WPlize->get_option('cronjob_enable') || ($this->WPlize->get_option('cronjob_timestamp') + (60 * 60) > time())) {
 return;
 }
-$this->WPlize->update_option('cronjob_timestamp', time());
+$this->WPlize->update_option(
+'cronjob_timestamp',
+time()
+);
 if ($this->check_theme_files()) {
 load_plugin_textdomain(
 'antivirus',
@@ -142,9 +183,17 @@ PLUGINDIR
 )
 );
 wp_mail(
-get_bloginfo('admin_email'),
+($this->WPlize->get_option('notify_email') ? $this->WPlize->get_option('notify_email') : get_bloginfo('admin_email')),
 '[' .get_bloginfo('name'). '] ' .__('Suspicion on a virus', 'antivirus'),
-__('The daily antivirus scan of your blog suggests alarm.', 'antivirus')
+sprintf(
+"%s\n%s",
+__('The daily antivirus scan of your blog suggests alarm.', 'antivirus'),
+get_bloginfo('url')
+)
+);
+$this->WPlize->update_option(
+'cronjob_alert',
+1
 );
 }
 }
@@ -170,6 +219,12 @@ $theme['Template Files']
 }
 return false;
 }
+function get_theme_name() {
+if ($theme = $this->get_current_theme()) {
+return $theme['Name'];
+}
+return false;
+}
 function get_white_list() {
 return explode(
 ':',
@@ -186,6 +241,10 @@ $values = array();
 $output = '';
 switch ($_POST['_action_request']) {
 case 'get_theme_files':
+$this->WPlize->update_option(
+'cronjob_alert',
+0
+);
 if ($files = $this->get_theme_files()) {
 $values = $files;
 }
@@ -279,12 +338,20 @@ $matches
 if ($matches[1]) {
 $results = array_merge($results, $matches[1]);
 }
+preg_match_all(
+'/<\s*?(frame)/',
+$line,
+$matches
+);
+if ($matches[1]) {
+$results = array_merge($results, $matches[1]);
+}
 preg_match(
 '/get_option.*?\([\'"](.*?)[\'"]\)/',
 $line,
 $matches
 );
-if ($matches[1] && $this->check_file_line(get_option($matches[1]), $num)) {
+if ($matches && $matches[1] && $this->check_file_line(get_option($matches[1]), $num)) {
 array_push($results, 'get_option');
 }
 if ($results) {
@@ -331,41 +398,55 @@ return $results;
 }
 return false;
 }
-function is_wp_27() {
-return version_compare($GLOBALS['wp_version'], '2.6.999', '>');
+function is_min_wp($version) {
+return version_compare(
+$GLOBALS['wp_version'],
+$version. 'alpha',
+'>='
+);
 }
 function check_user_can() {
 if (current_user_can('manage_options') === false || current_user_can('edit_plugins') === false || !is_user_logged_in()) {
 wp_die('You do not have permission to access!');
 }
 }
+function show_admin_notices() {
+if (strpos($_SERVER['SCRIPT_FILENAME'], 'index.php') !== false && $this->WPlize->get_option('cronjob_alert')) {
+echo sprintf(
+'<div class="updated fade"><p><strong>%s:</strong> %s <a href="options-general.php?page=%s">%s</a></p></div>',
+__('Suspicion on a virus', 'antivirus'),
+__('The daily antivirus scan of your blog suggests alarm.', 'antivirus'),
+plugin_basename(__FILE__),
+__('Manual scan', 'antivirus')
+);
+}
+}
 function show_plugin_info() {
 $data = get_plugin_data(__FILE__);
 echo sprintf(
-'%1$s: %2$s | %3$s: %4$s | %5$s: %6$s | %7$s: <a href="http://playground.ebiene.de/donate/">PayPal</a><br />',
+'%1$s: %2$s | %3$s: %4$s | %5$s: %6$s<br />',
 __('Plugin'),
 __('AntiVirus for WordPress', 'antivirus'),
 __('Version'),
 $data['Version'],
 __('Author'),
-$data['Author'],
-__('Donate', 'antivirus')
+$data['Author']
 );
 }
 function show_plugin_head() {
-if ($_REQUEST['page'] != plugin_basename(__FILE__)) {
+if (!isset($_REQUEST['page']) || $_REQUEST['page'] != plugin_basename(__FILE__)) {
 return false;
 }
 wp_enqueue_script('jquery') ?>
 <style type="text/css">
-<?php if ($this->is_wp_27()) { ?>
+<?php if ($this->is_min_wp('2.7')) { ?>
 .icon32 {
 background: url(<?php echo plugins_url('antivirus/img/icon32.png') ?>) no-repeat;
 }
 <?php } ?>
 .postbox .output {
 height: 1%;
-padding: 0 0 5px;
+padding: 0 0 1px;
 overflow: hidden;
 }
 #antivirus_check_start {
@@ -384,21 +465,21 @@ padding: 2px 5px;
 #antivirus_check_output {
 clear: both;
 height: 1%;
-margin: 0 0 -10px -3px;
-padding: 10px 0 0;
+xmargin: 0 0 -10px -3px;
+xpadding: 10px 0 0;
 overflow: hidden;
 }
 #antivirus_check_output div {
 float: left;
-color: white;
-margin: 10px;
-padding: 10px;
+color: #FFF;
+margin: 12px 6px 0;
+padding: 10px 12px;
 font-size: 11px !important;
 background: orange;
-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
 line-height: 1.2em;
--moz-border-radius: 11px;
--webkit-border-radius: 11px;
+border-radius: 10px;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
 }
 #antivirus_check_output div p {
 padding: 10px;
@@ -406,28 +487,29 @@ overflow: hidden;
 background: #F9F9F9;
 white-space: nowrap;
 text-shadow: none;
--moz-border-radius: 11px;
--webkit-border-radius: 11px;
+border-radius: 10px;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
 }
 #antivirus_check_output div p a {
 float: left;
-color: orange;
-margin: 0 12px 12px 0;
+color: #646464;
+margin: 0 6px 12px 0;
 display: block;
+border: 1px solid #bbbbbb;
 padding: 2px 5px;
-border: 1px solid orange;
+background: #f2f2f2;
 text-decoration: none;
 -moz-border-radius: 5px;
 -webkit-border-radius: 5px;
 }
-#antivirus_check_output div p a:first-child {
-color: green;
-border: 1px solid green;
+#antivirus_check_output div p a:hover {
+border: 1px solid #646464;
 }
 #antivirus_check_output div p code {
 clear: both;
 float: left;
-color: black;
+color: #000;
 padding: 2px 5px;
 -moz-border-radius: 2px;
 -webkit-border-radius: 2px;
@@ -435,6 +517,14 @@ padding: 2px 5px;
 #antivirus_check_output div p code span {
 padding: 2px;
 background: yellow;
+}
+table.form-table {
+margin: 0;
+}
+table.form-table span.shift {
+display: block;
+margin: 2px 0 0 18px;
+*margin-left: 26px;
 }
 </style>
 <script type="text/javascript">
@@ -476,18 +566,17 @@ if (lines = eval(data)) {
 output.animate(
 {
 backgroundColor: 'red',
-clear: 'left',
 width: '97%'
 },
-1000
+500
 );
 var i = 0;
 var len = lines.length;
 for (i; i < len; i = i + 3) {
 var num = parseInt(lines[i]) + 1;
-var line = lines[i + 1].replace('@span@', '<span>').replace('@/span@', '</span>');
+var line = lines[i + 1].replace(/@span@/g, '<span>').replace(/@\/span@/g, '</span>');
 var md5 = lines[i + 2];
-output.append('<p><a href="#" id="' + md5 + '"><?php echo _e("There is no virus", "antivirus") ?></a> <a href="theme-editor.php?file=' + content + '" target="_blank"><?php echo _e("View line", "antivirus") ?> ' + num + '</a><code>' + line + "</code></p>");
+output.append('<p><a href="#" id="' + md5 + '"><?php echo _e("There is no virus", "antivirus") ?></a> <a href="theme-editor.php?file=' + content + '&theme=<?php echo urlencode($this->get_theme_name()) ?>" target="_blank"><?php echo _e("View line", "antivirus") ?> ' + num + '</a><code>' + line + "</code></p>");
 $('#' + md5).click(
 function() {
 $.post(
@@ -496,7 +585,7 @@ $.post(
 'action':'get_ajax_response',
 '_ajax_nonce':'<?php echo wp_create_nonce("antivirus_ajax_nonce") ?>',
 '_file_md5':$(this).attr('id'),
-'_action_request': 'update_white_list'
+'_action_request':'update_white_list'
 },
 function(data) {
 if (input = eval(data)) {
@@ -517,12 +606,12 @@ output.animate(
 {
 backgroundColor: 'green'
 },
-1000
+500
 );
 }
 antivirus_files_loaded ++;
 if (antivirus_files_loaded >= antivirus_files_total) {
-$('#antivirus_check_alert').text('<?php _e("Scan finished", "antivirus") ?>').fadeIn().animate({opacity: 1.0}, 3000).fadeOut('slow', function() {$(this).empty();});
+$('#antivirus_check_alert').text('<?php _e("Scan finished", "antivirus") ?>').fadeIn().fadeOut().fadeIn().animate({opacity: 1.0}, 500).fadeOut('slow', function() {$(this).empty();});
 }
 }
 );
@@ -536,7 +625,7 @@ $.post(
 {
 'action':'get_ajax_response',
 '_ajax_nonce':'<?php echo wp_create_nonce("antivirus_ajax_nonce") ?>',
-'_action_request': 'get_theme_files'
+'_action_request':'get_theme_files'
 },
 function(data) {
 check_theme_files(eval(data));
@@ -545,6 +634,12 @@ check_theme_files(eval(data));
 return false;
 }
 );
+function manage_options() {
+var id = 'antivirus_cronjob_enable';
+$('#' + id).parents('.form-table').find('input[id!="' + id + '"]').attr('disabled', !$('#' + id).attr('checked'));
+}
+$('#antivirus_cronjob_enable').click(manage_options);
+manage_options();
 }
 );
 </script>
@@ -555,10 +650,10 @@ if (isset($_POST) && !empty($_POST)) {
 check_admin_referer('antivirus');
 $this->WPlize->update_option(
 array(
-'cronjob_enable' => $_POST['antivirus_cronjob_enable']
+'cronjob_enable'=> $_POST['antivirus_cronjob_enable'],
+'notify_email'=> $_POST['antivirus_notify_email']
 )
-);
-?>
+); ?>
 <div id="message" class="updated fade">
 <p>
 <strong>
@@ -568,7 +663,7 @@ array(
 </div>
 <?php } ?>
 <div class="wrap">
-<?php if ($this->is_wp_27()) { ?>
+<?php if ($this->is_min_wp('2.7')) { ?>
 <div class="icon32"><br /></div>
 <?php } ?>
 <h2>
@@ -587,9 +682,12 @@ AntiVirus
 <td>
 <label for="antivirus_cronjob_enable">
 <input type="checkbox" name="antivirus_cronjob_enable" id="antivirus_cronjob_enable" value="1" <?php checked($this->WPlize->get_option('cronjob_enable'), 1) ?> />
-<?php _e('Enable the daily antivirus scan and send me an email if suspicion on a virus', 'antivirus') ?>
+<?php _e('Enable the daily antivirus scan and send the administrator an e-mail if suspicion on a virus', 'antivirus') ?>
 <?php echo ($this->WPlize->get_option('cronjob_timestamp') ? ('&nbsp;<span class="setting-description">(' .__('Last', 'antivirus'). ': ' .date_i18n('d.m.Y H:i:s', $this->WPlize->get_option('cronjob_timestamp')). ')</span>') : '') ?>
 </label>
+<span class="shift">
+<input type="text" name="antivirus_notify_email" value="<?php echo $this->WPlize->get_option('notify_email') ?>" class="regular-text" /> <?php _e('Alternate e-mail address', 'antivirus') ?>
+</span>
 </td>
 </tr>
 </table>
