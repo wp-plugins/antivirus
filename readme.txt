@@ -14,21 +14,20 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 = At a Glance =
 * Quick & Dirty: activate, check, done!
 * Manual testing with immediate result of the infected files
-* Daily automatic check with a email notification
+* Daily automatic check with email notification
 * Whitelist: Mark the suspicion as "No virus"
-* WordPress 2.8 ready: Design and as well as technical
+* WordPress 2.8 ready: Design as well as technical
 * English, German, Italian, Persian
 
 = What's New in Antispam Bee 0.3 =
-* Add the alternate e-mail address (admin e-mail address as default)
+* Add alternate e-mail address (admin e-mail address as default)
 * Admin notice on dashboard where it has found the virus suspicion
-* Add the blog URL in the e-mail
+* Added blog URL in e-mail
 * WordPress 2.8 support
 * Check for hidden iframes
 * Bugfix for IE problem with box positions
 * Cleanup the source code
 * Language support for Persian
-
 
 == Installation ==
 1. Download *AntiVirus* plugin
