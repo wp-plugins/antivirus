@@ -19,7 +19,7 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 * WordPress 2.8 ready: Design as well as technical
 * English, German, Italian, Persian
 
-= What's New in Antispam Bee 0.3 =
+= What's New in AntiVirus for WordPress 0.3 =
 * Add alternate e-mail address (admin e-mail address as default)
 * Admin notice on dashboard where it has found the virus suspicion
 * Added blog URL in e-mail
