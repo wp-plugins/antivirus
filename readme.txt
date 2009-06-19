@@ -29,7 +29,6 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 * Cleanup the source code
 * Language support for Persian
 
-Please visit the [Homepage of the AntiVirus Plugin for WordPress](http://wpantivirus.com "Homepage of the AntiVirus Plugin for WordPress") for more information.
 
 == Installation ==
 1. Download *AntiVirus* plugin
@@ -39,5 +38,3 @@ Please visit the [Homepage of the AntiVirus Plugin for WordPress](http://wpantiv
 1. Activate *AntiVirus*
 1. Edit settings
 1. Ready
-
-Please visit the [Homepage of the AntiVirus Plugin for WordPress](http://wpantivirus.com "Homepage of the AntiVirus Plugin for WordPress") for further details.
