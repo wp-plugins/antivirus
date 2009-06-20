@@ -30,6 +30,15 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 * Cleanup the source code
 * Language support for Persian
 
+= 0.2 =
+* Whitelist: Mark the suspicion as "No virus"
+* Improving the output formatting
+* Add WPlize library for option data
+* Language support for Italian
+
+= 0.1 =
+* AntiVirus for WordPress goes online
+
 == Installation ==
 1. Download *AntiVirus* plugin
 1. Unzip the archive
