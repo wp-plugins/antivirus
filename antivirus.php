@@ -9,6 +9,11 @@ Author URI: http://wpcoder.de
 */
 
 
+if (!function_exists ('is_admin')) {
+header('Status: 403 Forbidden');
+header('HTTP/1.1 403 Forbidden');
+exit();
+}
 class AntiVirus {
 function AntiVirus() {
 if (!class_exists('WPlize')) {
@@ -44,14 +49,7 @@ $this,
 'init_admin_menu'
 )
 );
-if ($this->is_plugin_home()) {
-load_plugin_textdomain(
-'antivirus',
-sprintf(
-'%s/antivirus/lang',
-PLUGINDIR
-)
-);
+if ($this->is_current_page('home')) {
 add_action(
 'admin_head',
 array(
@@ -59,7 +57,15 @@ $this,
 'show_plugin_head'
 )
 );
-} else if ($GLOBALS['pagenow'] == 'index.php') {
+load_plugin_textdomain(
+'antivirus',
+sprintf(
+'%s/antivirus/lang',
+PLUGINDIR
+)
+);
+} else if ($this->is_current_page('index')) {
+if ($this->WPlize->get_option('cronjob_alert')) {
 add_action(
 'admin_notices',
 array(
@@ -67,7 +73,9 @@ $this,
 'show_dashboard_notices'
 )
 );
-} else if ($GLOBALS['pagenow'] == 'plugins.php') {
+}
+} else if ($this->is_current_page('plugins')) {
+if (!$this->is_min_wp('2.5')) {
 add_action(
 'admin_notices',
 array(
@@ -75,6 +83,7 @@ $this,
 'show_plugin_notices'
 )
 );
+}
 add_action(
 'activate_' .$this->plugin_basename,
 array(
@@ -415,8 +424,15 @@ $version. 'alpha',
 '>='
 );
 }
-function is_plugin_home() {
+function is_current_page($page) {
+switch($page) {
+case 'home':
 return (isset($_REQUEST['page']) && $_REQUEST['page'] == $this->plugin_basename);
+case 'index':
+case 'plugins':
+return ($GLOBALS['pagenow'] == sprintf('%s.php', $page));
+}
+return false;
 }
 function check_user_can() {
 if (current_user_can('manage_options') === false || current_user_can('edit_plugins') === false || !is_user_logged_in()) {
@@ -424,16 +440,27 @@ wp_die('You do not have permission to access!');
 }
 }
 function show_plugin_notices() {
-if (!$this->is_min_wp('2.5')) {
+load_plugin_textdomain(
+'antivirus',
+sprintf(
+'%s/antivirus/lang',
+PLUGINDIR
+)
+);
 echo sprintf(
 '<div class="error"><p><strong>%s</strong> %s</p></div>',
 __('AntiVirus for WordPress', 'antivirus'),
 __('requires at least WordPress 2.5', 'antivirus')
 );
 }
-}
 function show_dashboard_notices() {
-if ($this->WPlize->get_option('cronjob_alert')) {
+load_plugin_textdomain(
+'antivirus',
+sprintf(
+'%s/antivirus/lang',
+PLUGINDIR
+)
+);
 echo sprintf(
 '<div class="updated fade"><p><strong>%s:</strong> %s <a href="options-general.php?page=%s">%s</a></p></div>',
 __('Suspicion on a virus', 'antivirus'),
@@ -441,7 +468,6 @@ __('The daily antivirus scan of your blog suggests alarm.', 'antivirus'),
 $this->plugin_basename,
 __('Manual scan', 'antivirus')
 );
-}
 }
 function show_plugin_info() {
 $data = get_plugin_data(__FILE__);
@@ -740,6 +766,6 @@ AntiVirus
 </div>
 <?php }
 }
-if (class_exists('AntiVirus') && function_exists('is_admin')) {
-$GLOBALS['AntiVirus'] = new AntiVirus();
+if (class_exists('AntiVirus')) {
+new AntiVirus();
 }
