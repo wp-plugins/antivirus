@@ -24,6 +24,9 @@ msgstr "Scanarea zilnică a temei active a blogului dvs. vă alarmează."
 msgid "AntiVirus for WordPress"
 msgstr "AntiVirus pentru WordPress"
 
+msgid "requires at least WordPress 2.5"
+msgstr "requires at least WordPress 2.5"
+
 msgid "Last"
 msgstr "Ultimele"
 

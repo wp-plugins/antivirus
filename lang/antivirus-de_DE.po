@@ -24,6 +24,9 @@ msgstr "Der tägliche AntiVirus-Scan Ihres Blogs schlägt Alarm."
 msgid "AntiVirus for WordPress"
 msgstr "AntiVirus für WordPress"
 
+msgid "requires at least WordPress 2.5"
+msgstr "benötigt WordPress 2.5"
+
 msgid "Last"
 msgstr "Zuletzt"
 

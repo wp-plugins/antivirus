@@ -35,14 +35,8 @@ define('WP_ADMIN_URL', rtrim(admin_url(), '/'));
 } else {
 define('WP_ADMIN_URL', get_option('siteurl'). '/wp-admin');
 }
+$this->plugin_basename = plugin_basename(__FILE__);
 if (is_admin()) {
-load_plugin_textdomain(
-'antivirus',
-sprintf(
-'%s/antivirus/lang',
-PLUGINDIR
-)
-);
 add_action(
 'admin_menu',
 array(
@@ -50,11 +44,12 @@ $this,
 'init_admin_menu'
 )
 );
-add_action(
-'activate_' .plugin_basename(__FILE__),
-array(
-$this,
-'init_plugin_options'
+if ($this->is_plugin_home()) {
+load_plugin_textdomain(
+'antivirus',
+sprintf(
+'%s/antivirus/lang',
+PLUGINDIR
 )
 );
 add_action(
@@ -64,11 +59,27 @@ $this,
 'show_plugin_head'
 )
 );
+} else if ($GLOBALS['pagenow'] == 'index.php') {
 add_action(
 'admin_notices',
 array(
 $this,
-'show_admin_notices'
+'show_dashboard_notices'
+)
+);
+} else if ($GLOBALS['pagenow'] == 'plugins.php') {
+add_action(
+'admin_notices',
+array(
+$this,
+'show_plugin_notices'
+)
+);
+add_action(
+'activate_' .$this->plugin_basename,
+array(
+$this,
+'init_plugin_options'
 )
 );
 if ($this->is_min_wp('2.8')) {
@@ -92,6 +103,7 @@ $this,
 2
 );
 }
+}
 } else {
 add_action(
 'antivirus_daily_cronjob',
@@ -104,13 +116,12 @@ $this,
 }
 }
 function init_action_links($links, $file) {
-$plugin = plugin_basename(__FILE__);
-if ($file == $plugin) {
+if ($this->plugin_basename == $file) {
 return array_merge(
 array(
 sprintf(
 '<a href="options-general.php?page=%s">%s</a>',
-$plugin,
+$this->plugin_basename,
 __('Settings')
 )
 ),
@@ -120,14 +131,13 @@ $links
 return $links;
 }
 function init_row_meta($links, $file) {
-$plugin = plugin_basename(__FILE__);
-if ($file == $plugin) {
+if ($this->plugin_basename == $file) {
 return array_merge(
 $links,
 array(
 sprintf(
 '<a href="options-general.php?page=%s">%s</a>',
-$plugin,
+$this->plugin_basename,
 __('Settings')
 )
 )
@@ -405,18 +415,30 @@ $version. 'alpha',
 '>='
 );
 }
+function is_plugin_home() {
+return (isset($_REQUEST['page']) && $_REQUEST['page'] == $this->plugin_basename);
+}
 function check_user_can() {
 if (current_user_can('manage_options') === false || current_user_can('edit_plugins') === false || !is_user_logged_in()) {
 wp_die('You do not have permission to access!');
 }
 }
-function show_admin_notices() {
-if (strpos($_SERVER['SCRIPT_FILENAME'], 'index.php') !== false && $this->WPlize->get_option('cronjob_alert')) {
+function show_plugin_notices() {
+if (!$this->is_min_wp('2.5')) {
+echo sprintf(
+'<div class="error"><p><strong>%s</strong> %s</p></div>',
+__('AntiVirus for WordPress', 'antivirus'),
+__('requires at least WordPress 2.5', 'antivirus')
+);
+}
+}
+function show_dashboard_notices() {
+if ($this->WPlize->get_option('cronjob_alert')) {
 echo sprintf(
 '<div class="updated fade"><p><strong>%s:</strong> %s <a href="options-general.php?page=%s">%s</a></p></div>',
 __('Suspicion on a virus', 'antivirus'),
 __('The daily antivirus scan of your blog suggests alarm.', 'antivirus'),
-plugin_basename(__FILE__),
+$this->plugin_basename,
 __('Manual scan', 'antivirus')
 );
 }
@@ -434,9 +456,6 @@ $data['Author']
 );
 }
 function show_plugin_head() {
-if (!isset($_REQUEST['page']) || $_REQUEST['page'] != plugin_basename(__FILE__)) {
-return false;
-}
 wp_enqueue_script('jquery') ?>
 <style type="text/css">
 <?php if ($this->is_min_wp('2.7')) { ?>

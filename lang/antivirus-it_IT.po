@@ -24,6 +24,9 @@ msgstr "La scansione giornaliera di antivirus del tuo blog ti avvisa ti un possi
 msgid "AntiVirus for WordPress"
 msgstr "AntiVirus per WordPress"
 
+msgid "requires at least WordPress 2.5"
+msgstr "requires at least WordPress 2.5"
+
 msgid "Last"
 msgstr "Ultimo"
 

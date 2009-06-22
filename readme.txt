@@ -19,6 +19,10 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 * WordPress 2.8 ready: Design as well as technical
 * English, German, Italian, Persian
 
+= For german users =
+[Ausführliche Beschreibung des Plugins](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "Ausführliche Beschreibung des Plugins")
+
+
 == Changelog ==
 = 0.3 =
 * Add alternate e-mail address (admin e-mail address as default)
@@ -38,6 +42,7 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 
 = 0.1 =
 * AntiVirus for WordPress goes online
+
 
 == Installation ==
 1. Download *AntiVirus* plugin
