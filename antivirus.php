@@ -766,6 +766,4 @@ AntiVirus
 </div>
 <?php }
 }
-if (class_exists('AntiVirus')) {
 new AntiVirus();
-}
