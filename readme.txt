@@ -2,7 +2,7 @@
 Contributors: stalkerX
 Tags: antivirus, virus, antispam, spam, scanner
 Requires at least: 2.5
-Tested up to: 2.8
+Tested up to: 2.8.1
 Stable tag: trunk
 
 AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections
@@ -24,6 +24,10 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 
 
 == Changelog ==
+= 0.4 =
+* Adds support for WordPress new changelog readme.txt standard
+* Various changes for more speed, usability and security
+
 = 0.3 =
 * Add alternate e-mail address (admin e-mail address as default)
 * Admin notice on dashboard where it has found the virus suspicion
