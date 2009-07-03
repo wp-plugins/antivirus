@@ -91,6 +91,13 @@ $this,
 'init_plugin_options'
 )
 );
+add_action(
+'deactivate_' .$this->plugin_basename,
+array(
+$this,
+'clear_cron_job'
+)
+);
 if ($this->is_min_wp('2.8')) {
 add_filter(
 'plugin_row_meta',
@@ -155,6 +162,7 @@ __('Settings')
 return $links;
 }
 function init_plugin_options() {
+$this->init_cron_job();
 $this->WPlize->init_option(
 array(
 'cronjob_alert'=> 0,
@@ -164,12 +172,18 @@ array(
 'notify_email'=> ''
 )
 );
-if (function_exists('wp_schedule_event') === true) {
-if (wp_next_scheduled('antivirus_daily_cronjob_hook')) {
-wp_clear_scheduled_hook('antivirus_daily_cronjob_hook');
 }
-if (!wp_next_scheduled('antivirus_daily_cronjob_hook')) {
+function init_cron_job() {
+if (function_exists('wp_schedule_event')) {
+if (!wp_next_scheduled('antivirus_daily_cronjob')) {
 wp_schedule_event(time(), 'daily', 'antivirus_daily_cronjob');
+}
+}
+}
+function clear_cron_job() {
+if (function_exists('wp_schedule_event')) {
+if (wp_next_scheduled('antivirus_daily_cronjob')) {
+wp_clear_scheduled_hook('antivirus_daily_cronjob');
 }
 }
 }
