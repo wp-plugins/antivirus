@@ -380,7 +380,7 @@ if ($matches[1]) {
 $results = array_merge($results, $matches[1]);
 }
 preg_match(
-'/get_option.*?\([\'"](.*?)[\'"]\)/',
+'/get_option\s*\(\s*[\'"](.*?)[\'"]\s*\)/',
 $line,
 $matches
 );
