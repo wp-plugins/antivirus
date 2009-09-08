@@ -24,8 +24,8 @@ msgstr "Der tägliche AntiVirus-Scan Ihres Blogs schlägt Alarm."
 msgid "AntiVirus for WordPress"
 msgstr "AntiVirus für WordPress"
 
-msgid "requires at least WordPress 2.5"
-msgstr "benötigt WordPress 2.5"
+msgid "requires at least WordPress 2.6"
+msgstr "benötigt WordPress 2.6"
 
 msgid "Last"
 msgstr "Zuletzt"
@@ -45,11 +45,26 @@ msgstr "Täglichen Prüfvorgang durchführen und bei Verdacht dem Administrator 
 msgid "Alternate e-mail address"
 msgstr "Alternative E-Mail-Adresse"
 
+msgid "Completed scan"
+msgstr "Durchgeführte Prüfung"
+
+msgid "Permalink back door check"
+msgstr "Check auf das Sicherheitsrisiko im Permalink"
+
+msgid "http://mashable.com/2009/09/05/wordpress-attack/"
+msgstr "http://blog.wordpress-deutschland.org/2009/09/05/aeltere-wordpress-versionen-ziel-von-angriffen.html"
+
 msgid "Manual scan"
 msgstr "Manuelle Prüfung"
 
-msgid "Scan the templates now"
-msgstr "Templates jetzt manuell prüfen"
+msgid "Scan the theme templates now"
+msgstr "Theme-Templates jetzt prüfen"
+
+msgid "All clear"
+msgstr "Verdachtlos"
+
+msgid "Danger"
+msgstr "Gefahr"
 
 msgid "About"
 msgstr "Information"

@@ -4,7 +4,7 @@ Plugin Name: AntiVirus
 Plugin URI: http://wpantivirus.com
 Description: AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections
 Author: Sergej M&uuml;ller
-Version: 0.4
+Version: 0.5
 Author URI: http://wpcoder.de
 */
 
@@ -75,7 +75,7 @@ $this,
 );
 }
 } else if ($this->is_current_page('plugins')) {
-if (!$this->is_min_wp('2.5')) {
+if (!$this->is_min_wp('2.6')) {
 add_action(
 'admin_notices',
 array(
@@ -207,7 +207,7 @@ $this->WPlize->update_option(
 'cronjob_timestamp',
 time()
 );
-if ($this->check_theme_files()) {
+if ($this->check_theme_files() || $this->check_permalink_structure()) {
 load_plugin_textdomain(
 'antivirus',
 sprintf(
@@ -318,9 +318,13 @@ $output = sprintf(
 "['%s']",
 implode("', '", $values)
 );
-header('Content-Type: text/plain');
+header('Content-Type: application/json');
 header('Content-Length: ' .strlen($output));
-echo $output;
+echo sprintf(
+'{data:%s, nonce:"%s"}',
+$output,
+$_POST['_ajax_nonce']
+);
 }
 exit();
 }
@@ -348,6 +352,9 @@ $output
 );
 return $output;
 }
+function get_preg_match() {
+return '/(eval|base64_encode|base64_decode|create_function|exec|shell_exec|system|passthru|ob_get_contents|file|curl_init|readfile|fopen|fsockopen|pfsockopen|fclose|fread|file_put_contents)\s*?\(/';
+}
 function check_file_line($line = '', $num) {
 $line = trim($line);
 if (!$line || !$num) {
@@ -356,7 +363,7 @@ return false;
 $results = array();
 $output = array();
 preg_match_all(
-'/(eval|base64_encode|base64_decode|create_function|exec|shell_exec|system|passthru|ob_get_contents|file|curl_init|readfile|fopen|fsockopen|pfsockopen|fclose|fread|file_put_contents)\s*?\(/',
+$this->get_preg_match(),
 $line,
 $matches
 );
@@ -431,6 +438,20 @@ return $results;
 }
 return false;
 }
+function check_permalink_structure() {
+if ($structure = get_option('permalink_structure')) {
+preg_match_all(
+$this->get_preg_match(),
+$structure,
+$matches
+);
+print_r($matches[1]);
+if ($matches[1]) {
+return $matches[1];
+}
+}
+return false;
+}
 function is_min_wp($version) {
 return version_compare(
 $GLOBALS['wp_version'],
@@ -464,7 +485,7 @@ PLUGINDIR
 echo sprintf(
 '<div class="error"><p><strong>%s</strong> %s</p></div>',
 __('AntiVirus for WordPress', 'antivirus'),
-__('requires at least WordPress 2.5', 'antivirus')
+__('requires at least WordPress 2.6', 'antivirus')
 );
 }
 function show_dashboard_notices() {
@@ -497,163 +518,61 @@ $data['Author']
 }
 function show_plugin_head() {
 wp_enqueue_script('jquery') ?>
-<style type="text/css">
-<?php if ($this->is_min_wp('2.7')) { ?>
-.icon32 {
-background: url(<?php echo plugins_url('antivirus/img/icon32.png') ?>) no-repeat;
-}
-<?php } ?>
-.postbox .output {
-height: 1%;
-padding: 0 0 1px;
-overflow: hidden;
-}
-#antivirus_check_start {
-float: left;
-}
-#antivirus_check_alert {
-float: left;
-color: green;
-margin: 1px 10px 0;
-border: 1px solid green;
-display: none;
-padding: 2px 5px;
--moz-border-radius: 5px;
--webkit-border-radius: 5px;
-}
-#antivirus_check_output {
-clear: both;
-height: 1%;
-xmargin: 0 0 -10px -3px;
-xpadding: 10px 0 0;
-overflow: hidden;
-}
-#antivirus_check_output div {
-float: left;
-color: #FFF;
-margin: 12px 6px 0;
-padding: 10px 12px;
-font-size: 11px !important;
-background: orange;
-line-height: 1.2em;
-border-radius: 10px;
--moz-border-radius: 10px;
--webkit-border-radius: 10px;
-}
-#antivirus_check_output div p {
-padding: 10px;
-overflow: hidden;
-background: #F9F9F9;
-white-space: nowrap;
-text-shadow: none;
-border-radius: 10px;
--moz-border-radius: 10px;
--webkit-border-radius: 10px;
-}
-#antivirus_check_output div p a {
-float: left;
-color: #646464;
-margin: 0 6px 12px 0;
-display: block;
-border: 1px solid #bbbbbb;
-padding: 2px 5px;
-background: #f2f2f2;
-text-decoration: none;
--moz-border-radius: 5px;
--webkit-border-radius: 5px;
-}
-#antivirus_check_output div p a:hover {
-border: 1px solid #646464;
-}
-#antivirus_check_output div p code {
-clear: both;
-float: left;
-color: #000;
-padding: 2px 5px;
--moz-border-radius: 2px;
--webkit-border-radius: 2px;
-}
-#antivirus_check_output div p code span {
-padding: 2px;
-background: yellow;
-}
-table.form-table {
-margin: 0;
-}
-table.form-table span.shift {
-display: block;
-margin: 2px 0 0 18px;
-*margin-left: 26px;
-}
-</style>
+<link href="<?php echo plugins_url('antivirus/css/global.css') ?>" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 jQuery(document).ready(
 function($) {
-function check_theme_files(files) {
-if (!files) {
-return;
-}
-var i = 0;
-var len = files.length;
-var alert = $('#antivirus_check_alert');
-var output = $('#antivirus_check_output');
-antivirus_files_total = len;
-antivirus_files_loaded = 0;
-alert.empty();
-output.empty();
-for (i; i < len; i++) {
-output.append('<div id="antivirus_check_' + i + '">' + files[i] + '</div>');
-check_theme_file(files[i], i);
-}
-}
-function check_theme_file(file, id) {
-if (!file) {
-return;
-}
+av_nonce = '<?php echo wp_create_nonce("antivirus_ajax_nonce") ?>';
+function check_theme_file(current) {
+var id = parseInt(current || 0);
+var file = av_files[id];
 $.post(
 '<?php echo WP_ADMIN_URL ?>/admin-ajax.php',
 {
 'action':'get_ajax_response',
-'_ajax_nonce':'<?php echo wp_create_nonce("antivirus_ajax_nonce") ?>',
+'_ajax_nonce':av_nonce,
 '_theme_file':file,
-'_action_request':'check_theme_file'
+'_action_request': 'check_theme_file'
 },
-function(data) {
-var output = $('#antivirus_check_' + id);
-var content = output.text();
-if (lines = eval(data)) {
-output.animate(
-{
-backgroundColor: 'red',
-width: '97%'
-},
-500
-);
+function(input) {
+var item = $('#av_template_' + id);
+if (input) {
+input = eval('(' + input + ')');
+if (!input.nonce || input.nonce != av_nonce) {
+return;
+}
+item.addClass('danger');
 var i = 0;
+var lines = input.data;
 var len = lines.length;
 for (i; i < len; i = i + 3) {
 var num = parseInt(lines[i]) + 1;
 var line = lines[i + 1].replace(/@span@/g, '<span>').replace(/@\/span@/g, '</span>');
 var md5 = lines[i + 2];
-output.append('<p><a href="#" id="' + md5 + '"><?php echo _e("There is no virus", "antivirus") ?></a> <a href="theme-editor.php?file=' + content + '&theme=<?php echo urlencode($this->get_theme_name()) ?>" target="_blank"><?php echo _e("View line", "antivirus") ?> ' + num + '</a><code>' + line + "</code></p>");
+item.append('<p><a href="#" id="' + md5 + '"><?php echo _e("There is no virus", "antivirus") ?></a> <a href="theme-editor.php?file=' + item.text() + '&theme=<?php echo urlencode($this->get_theme_name()) ?>" target="_blank"><?php echo _e("View line", "antivirus") ?> ' + num + '</a><code>' + line + '</code></p>');
 $('#' + md5).click(
 function() {
 $.post(
 '<?php echo WP_ADMIN_URL ?>/admin-ajax.php',
 {
 'action':'get_ajax_response',
-'_ajax_nonce':'<?php echo wp_create_nonce("antivirus_ajax_nonce") ?>',
+'_ajax_nonce':av_nonce,
 '_file_md5':$(this).attr('id'),
 '_action_request':'update_white_list'
 },
-function(data) {
-if (input = eval(data)) {
-var parent = $('#' + input[0]).parent();
+function(input) {
+if (!input) {
+return;
+}
+input = eval('(' + input + ')');
+if (!input.nonce || input.nonce != av_nonce) {
+return;
+}
+var parent = $('#' + input.data[0]).parent();
 if (parent.parent().children().length <= 1) {
 parent.parent().hide('slow').remove();
 }
 parent.hide('slow').remove();
-}
 }
 );
 return false;
@@ -661,33 +580,52 @@ return false;
 );
 }
 } else {
-output.animate(
-{
-backgroundColor: 'green'
-},
-500
-);
+item.addClass('done');
 }
-antivirus_files_loaded ++;
-if (antivirus_files_loaded >= antivirus_files_total) {
-$('#antivirus_check_alert').text('<?php _e("Scan finished", "antivirus") ?>').fadeIn().fadeOut().fadeIn().animate({opacity: 1.0}, 500).fadeOut('slow', function() {$(this).empty();});
-}
-}
-);
-}
-$('#antivirus_check_start').click(
+av_files_loaded ++;
+if (av_files_loaded >= av_files_total) {
+$('#templates .alert').text('<?php _e("Scan finished", "antivirus") ?>').fadeIn().fadeOut().fadeIn().fadeOut().fadeIn().animate({opacity: 1.0}, 500).fadeOut(
+'slow',
 function() {
-$('.postbox .output').append('<div id="antivirus_check_output"></div>');
-$('.postbox .output p').append('<span id="antivirus_check_alert"></span>');
+$(this).empty();
+}
+);
+} else {
+check_theme_file(id + 1);
+}
+}
+);
+}
+$('#templates a.button').click(
+function() {
 $.post(
 '<?php echo WP_ADMIN_URL ?>/admin-ajax.php',
 {
-'action':'get_ajax_response',
-'_ajax_nonce':'<?php echo wp_create_nonce("antivirus_ajax_nonce") ?>',
-'_action_request':'get_theme_files'
+action:'get_ajax_response',
+_ajax_nonce:av_nonce,
+_action_request:'get_theme_files'
 },
-function(data) {
-check_theme_files(eval(data));
+function(input) {
+if (!input) {
+return;
+}
+input = eval('(' + input + ')');
+if (!input.nonce || input.nonce != av_nonce) {
+return;
+}
+var output = '';
+av_files = input.data;
+av_files_total = av_files.length;
+av_files_loaded = 0;
+jQuery.each(
+av_files,
+function(i, val) {
+output += '<div id="av_template_' + i + '">' + val + '</div>';
+}
+);
+$('#templates .alert').empty();
+$('#templates .output').empty().append(output);
+check_theme_file();
 }
 );
 return false;
@@ -736,6 +674,20 @@ AntiVirus
 <?php _e('Settings') ?>
 </h3>
 <div class="inside">
+<ul class="agenda">
+<li>
+<p></p>
+<span>
+<?php _e('All clear', 'antivirus') ?>
+</span>
+</li>
+<li class="danger">
+<p></p>
+<span>
+<?php _e('Danger', 'antivirus') ?>
+</span>
+</li>
+</ul>
 <table class="form-table">
 <tr>
 <td>
@@ -757,12 +709,24 @@ AntiVirus
 </div>
 <div class="postbox">
 <h3>
+<?php _e('Completed scan', 'antivirus') ?>
+</h3>
+<div class="inside" id="executed">
+<div class="output">
+<div class="<?php echo ($this->check_permalink_structure() ? 'danger' : 'done') ?>"><?php _e('Permalink back door check', 'antivirus') ?> <a href="<?php _e('http://mashable.com/2009/09/05/wordpress-attack/', 'antivirus') ?>" target="_blank">Info</a></div>
+</div>
+</div>
+</div>
+<div class="postbox">
+<h3>
 <?php _e('Manual scan', 'antivirus') ?>
 </h3>
-<div class="inside output">
+<div class="inside" id="templates">
 <p>
-<a href="#" id="antivirus_check_start" class="button rbutton"><?php _e('Scan the templates now', 'antivirus') ?></a>
+<a href="#" class="button rbutton"><?php _e('Scan the theme templates now', 'antivirus') ?></a>
+<span class="alert"></span>
 </p>
+<div class="output"></div>
 </div>
 </div>
 <div class="postbox">
