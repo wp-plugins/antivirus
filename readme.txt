@@ -12,7 +12,7 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections.
 
 = At a Glance =
-* Detect the current permalink back door
+* **Detect the current [WordPress permalink back door](http://mashable.com/2009/09/05/wordpress-attack/ "WordPress permalink back door")**
 * Quick & Dirty: activate, check, done!
 * Manual testing with immediate result of the infected files
 * Daily automatic check with email notification
@@ -26,7 +26,7 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 
 == Changelog ==
 = 0.5 =
-* Add security scan for the current [WordPress permalink back door](http://mashable.com/2009/09/05/wordpress-attack/)
+* Add security scan for the current [WordPress permalink back door](http://mashable.com/2009/09/05/wordpress-attack/ "WordPress permalink back door")
 * Software architecture changes
 
 = 0.4 =
