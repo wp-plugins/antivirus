@@ -548,7 +548,8 @@ for (i; i < len; i = i + 3) {
 var num = parseInt(lines[i]) + 1;
 var line = lines[i + 1].replace(/@span@/g, '<span>').replace(/@\/span@/g, '</span>');
 var md5 = lines[i + 2];
-item.append('<p><a href="#" id="' + md5 + '"><?php echo _e("There is no virus", "antivirus") ?></a> <a href="theme-editor.php?file=' + item.text() + '&theme=<?php echo urlencode($this->get_theme_name()) ?>" target="_blank"><?php echo _e("View line", "antivirus") ?> ' + num + '</a><code>' + line + '</code></p>');
+var file = item.text();
+item.append('<p><a href="#" id="' + md5 + '"><?php echo _e("There is no virus", "antivirus") ?></a> <a href="theme-editor.php?file=' + file + '&theme=<?php echo urlencode($this->get_theme_name()) ?>" target="_blank"><?php echo _e("View line", "antivirus") ?> ' + num + '</a><code>' + line + '</code></p>');
 $('#' + md5).click(
 function() {
 $.post(
