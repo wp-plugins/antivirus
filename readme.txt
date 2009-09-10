@@ -1,7 +1,7 @@
 === AntiVirus ===
 Contributors: stalkerX
 Tags: antivirus, virus, antispam, spam, scanner
-Requires at least: 2.5
+Requires at least: 2.6
 Tested up to: 2.8.4
 Stable tag: trunk
 
