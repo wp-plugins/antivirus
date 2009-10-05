@@ -370,7 +370,7 @@ if ($matches[1]) {
 $results = $matches[1];
 }
 preg_match_all(
-'/[\'\"\$\\ \/]*?([a-zA-Z0-9]{' .strlen(base64_encode('sergej+sweta=love')). ',})/',
+'/[\'\"\$\\ \/]*?([a-zA-Z0-9]{' .strlen(base64_encode('sergej + swetlana = love.')). ',})/',
 $line,
 $matches
 );
