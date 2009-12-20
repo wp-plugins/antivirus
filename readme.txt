@@ -2,16 +2,18 @@
 Contributors: stalkerX
 Tags: antivirus, virus, antispam, spam, scanner
 Requires at least: 2.6
-Tested up to: 2.8.5
+Tested up to: 2.9
 Stable tag: trunk
 
 AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections
 
-== Description ==
-= AntiVirus protection for your blog =
-AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections.
 
-= At a Glance =
+== Description ==
+*AntiVirus for WordPress* is a smart and effective solution to protect your blog against exploits and spam injections. AntiVirus protection for your blog.
+
+
+= Features =
+* WordPress 2.9 ready
 * **Detect the current [WordPress permalink back door](http://mashable.com/2009/09/05/wordpress-attack/ "WordPress permalink back door")**
 * Quick & Dirty: activate, check, done!
 * Manual testing with immediate result of the infected files
@@ -20,11 +22,16 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 * WordPress 2.8 ready: Design as well as technical
 * English, German, Italian, Persian
 
-= For german users =
-[Ausführliche Beschreibung des Plugins](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "Ausführliche Beschreibung des Plugins")
+
+= Documentation =
+* [*AntiVirus for WordPress* documentation in German](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress")
+* [Follow us on Twitter for updates](http://twitter.com/wpSEO "wpSEO on Twitter")
 
 
 == Changelog ==
+= 0.5 =
+* WordPress 2.9 support
+
 = 0.5 =
 * Add security scan for the current [WordPress permalink back door](http://mashable.com/2009/09/05/wordpress-attack/ "WordPress permalink back door")
 * Software architecture changes
@@ -61,3 +68,9 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 1. Activate *AntiVirus*
 1. Edit settings
 1. Ready
+
+
+== Frequently Asked Questions ==
+= Documentation =
+* [*AntiVirus for WordPress* documentation in German](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress")
+* [Follow us on Twitter for updates](http://twitter.com/wpSEO "wpSEO on Twitter")

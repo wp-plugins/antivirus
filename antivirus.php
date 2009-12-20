@@ -4,7 +4,7 @@ Plugin Name: AntiVirus
 Plugin URI: http://wpantivirus.com
 Description: AntiVirus for WordPress is a smart, effectively solution to protect your blog against exploits and spam injections.
 Author: Sergej M&uuml;ller
-Version: 0.5
+Version: 0.6
 Author URI: http://wpcoder.de
 */
 
@@ -244,7 +244,7 @@ return array_unique(
 array_map(
 create_function(
 '$v',
-'return str_replace("wp-content", "", $v);'
+'return str_replace(array(WP_CONTENT_DIR, "wp-content"), "", $v);'
 ),
 $theme['Template Files']
 )
