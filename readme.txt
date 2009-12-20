@@ -29,7 +29,7 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 
 
 == Changelog ==
-= 0.5 =
+= 0.6 =
 * WordPress 2.9 support
 
 = 0.5 =
