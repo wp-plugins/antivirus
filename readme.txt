@@ -13,13 +13,12 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 
 
 = Features =
-* WordPress 2.9 ready
+* WordPress 2.9.x ready
 * **Detect the current [WordPress permalink back door](http://mashable.com/2009/09/05/wordpress-attack/ "WordPress permalink back door")**
 * Quick & Dirty: activate, check, done!
 * Manual testing with immediate result of the infected files
 * Daily automatic check with email notification
 * Whitelist: Mark the suspicion as "No virus"
-* WordPress 2.8 ready: Design as well as technical
 * English, German, Italian, Persian
 
 
