@@ -66,6 +66,12 @@ msgstr "Verdachtlos"
 msgid "Danger"
 msgstr "Gefahr"
 
+msgid "Learn about wpSEO"
+msgstr "wpSEO kennenlernen"
+
+msgid "Follow on Twitter"
+msgstr "Auf Twitter folgen"
+
 msgid "About"
 msgstr "Information"
 

@@ -444,7 +444,6 @@ $this->get_preg_match(),
 $structure,
 $matches
 );
-print_r($matches[1]);
 if ($matches[1]) {
 return $matches[1];
 }
@@ -506,13 +505,15 @@ __('Manual scan', 'antivirus')
 function show_plugin_info() {
 $data = get_plugin_data(__FILE__);
 echo sprintf(
-'%1$s: %2$s | %3$s: %4$s | %5$s: %6$s<br />',
+'%1$s: %2$s | %3$s: %4$s | %5$s: <a href="http://eBiene.de" target="_blank">Sergej Müller</a> | <a href="http://twitter.com/wpSEO" target="_blank">%6$s</a> | <a href="http://www.wpSEO.%7$s/?utm_source=antivirus&utm_medium=plugin&utm_campaign=plugins" target="_blank">%8$s</a><br />',
 __('Plugin'),
 __('AntiVirus for WordPress', 'antivirus'),
 __('Version'),
 $data['Version'],
 __('Author'),
-$data['Author']
+__('Follow on Twitter', 'antivirus'),
+(get_locale() == 'de_DE' ? 'de' : 'org'),
+__('Learn about wpSEO', 'antivirus')
 );
 }
 function show_plugin_head() {
