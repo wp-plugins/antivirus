@@ -352,7 +352,7 @@ $output
 return $output;
 }
 function get_preg_match() {
-return '/(eval|base64_encode|base64_decode|create_function|exec|shell_exec|system|passthru|ob_get_contents|file|curl_init|readfile|fopen|fsockopen|pfsockopen|fclose|fread|file_put_contents)\s*?\(/';
+return '/(eval|base64_encode|base64_decode|create_function|exec|shell_exec|system|passthru|ob_get_contents|file|curl_init|readfile|fopen|fsockopen|pfsockopen|fclose|fread|include|require|file_put_contents)\s*?\(/';
 }
 function check_file_line($line = '', $num) {
 $line = trim($line);
