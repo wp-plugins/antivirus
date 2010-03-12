@@ -1,0 +1,119 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AntiVirus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-11 22:49-0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Sergej Müller\n"
+"Language-Team: Fernando Lopes <contato@fernandolopes.com.br>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: BRAZIL\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:141
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:157
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:674
+msgid "Settings"
+msgstr "Configurações"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:220
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:500
+msgid "Suspicion on a virus"
+msgstr "Suspeita de vírus"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:223
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:501
+msgid "The daily antivirus scan of your blog suggests alarm."
+msgstr "Alarme da verificação de AntiVírus diária do seu blog."
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:486
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:511
+msgid "AntiVirus for WordPress"
+msgstr "AntiVírus para WordPress"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:487
+msgid "requires at least WordPress 2.6"
+msgstr "requer pelo menos WordPress v2.6"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:503
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:722
+msgid "Manual scan"
+msgstr "Verificação Manual"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:510
+msgid "Plugin"
+msgstr "Plugin"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:512
+msgid "Version"
+msgstr "Versão"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:514
+msgid "Author"
+msgstr "Autor"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:552
+msgid "There is no virus"
+msgstr "Não há vírus"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:552
+msgid "View line"
+msgstr "Ver linha"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:587
+msgid "Scan finished"
+msgstr "Verificação terminada"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:657
+msgid "Settings saved."
+msgstr "Configurações salvas."
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:681
+msgid "All clear"
+msgstr "Tudo limpo"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:687
+msgid "Danger"
+msgstr "Perigo"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:696
+msgid "Enable the daily antivirus scan and send the administrator an e-mail if suspicion on a virus"
+msgstr "Ativar o antivírus diariamente, verificar e enviar ao administrador um email se há suspeita de um vírus."
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:697
+msgid "Last"
+msgstr "Último"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:700
+msgid "Alternate e-mail address"
+msgstr "Endereço de email alternativo."
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:706
+msgid "Save Changes"
+msgstr "Salvar Alterações"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:712
+msgid "Completed scan"
+msgstr "Verificação completa"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:716
+msgid "Permalink back door check"
+msgstr "Checar Link Permanente sobre ataque pela porta dos fundos"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:716
+msgid "http://mashable.com/2009/09/05/wordpress-attack/"
+msgstr "http://mashable.com/2009/09/05/wordpress-attack/"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:726
+msgid "Scan the theme templates now"
+msgstr "Verificar os temas agora"
+
+#: D:\www\wordpress\wp-content\plugins\antivirus/antivirus.php:734
+msgid "About"
+msgstr "Sobre"
+
