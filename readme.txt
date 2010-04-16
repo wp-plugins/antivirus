@@ -23,8 +23,9 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 
 
 = Documentation =
-* [*AntiVirus for WordPress* documentation in German](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress")
+* [Plugin documentation in German](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress")
 * [Follow us on Twitter for updates](http://twitter.com/wpSEO "wpSEO on Twitter")
+* [Other author plugins](http://wordpress.org/extend/plugins/profile/stalkerx "Other author plugins")
 
 
 == Changelog ==
@@ -62,6 +63,11 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 * AntiVirus for WordPress goes online
 
 
+== Screenshots ==
+
+1. WordPress AntiVirus settings
+
+
 == Installation ==
 1. Download *AntiVirus* plugin
 1. Unzip the archive
@@ -70,9 +76,3 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 1. Activate *AntiVirus*
 1. Edit settings
 1. Ready
-
-
-== Frequently Asked Questions ==
-= Documentation =
-* [*AntiVirus for WordPress* documentation in German](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress")
-* [Follow us on Twitter for updates](http://twitter.com/wpSEO "wpSEO on Twitter")
