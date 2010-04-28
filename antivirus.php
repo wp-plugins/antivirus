@@ -505,7 +505,7 @@ __('Manual scan', 'antivirus')
 function show_plugin_info() {
 $data = get_plugin_data(__FILE__);
 echo sprintf(
-'%1$s: %2$s | %3$s: %4$s | %5$s: <a href="http://eBiene.de" target="_blank">Sergej Müller</a> | <a href="http://twitter.com/wpSEO" target="_blank">%6$s</a> | <a href="http://www.wpSEO.%7$s/?utm_source=antivirus&utm_medium=plugin&utm_campaign=plugins" target="_blank">%8$s</a><br />',
+'%1$s: %2$s | %3$s: %4$s | %5$s: <a href="http://eBiene.de" target="_blank">Sergej M&uuml;ller</a> | <a href="http://twitter.com/wpSEO" target="_blank">%6$s</a> | <a href="http://www.wpSEO.%7$s/?utm_source=antivirus&utm_medium=plugin&utm_campaign=plugins" target="_blank">%8$s</a><br />',
 __('Plugin'),
 __('AntiVirus for WordPress', 'antivirus'),
 __('Version'),
@@ -524,7 +524,7 @@ jQuery(document).ready(
 function($) {
 av_nonce = '<?php echo wp_create_nonce("antivirus_ajax_nonce") ?>';
 function check_theme_file(current) {
-var id = parseInt(current || 0);
+var id = parseInt(current || 0);
 var file = av_files[id];
 $.post(
 '<?php echo WP_ADMIN_URL ?>/admin-ajax.php',
