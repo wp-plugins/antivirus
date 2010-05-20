@@ -18,16 +18,13 @@ msgstr ""
 msgid "Suspicion on a virus"
 msgstr "Virusverdacht"
 
-msgid "The daily antivirus scan of your blog suggests alarm."
-msgstr "Der tägliche AntiVirus-Scan Ihres Blogs schlägt Alarm."
-
 msgid "AntiVirus for WordPress"
 msgstr "AntiVirus für WordPress"
 
-msgid "requires at least WordPress 2.6"
-msgstr "benötigt WordPress 2.6"
+msgid "requires at least WordPress 2.7"
+msgstr "benötigt WordPress 2.7"
 
-msgid "Last"
+msgid "Last check"
 msgstr "Zuletzt"
 
 msgid "View line"
@@ -39,10 +36,10 @@ msgstr "Ist kein Virus"
 msgid "Scan finished"
 msgstr "Prüfung abgeschlossen"
 
-msgid "Enable the daily antivirus scan and send the administrator an e-mail if suspicion on a virus"
-msgstr "Täglichen Prüfvorgang durchführen und bei Verdacht dem Administrator eine E-Mail senden"
+msgid "Enable the daily antivirus scan"
+msgstr "Tägliche AntiVirus-Prüfung durchführen"
 
-msgid "Alternate e-mail address"
+msgid "Alternate email address"
 msgstr "Alternative E-Mail-Adresse"
 
 msgid "Completed scan"
@@ -60,6 +57,9 @@ msgstr "Manuelle Prüfung"
 msgid "Scan the theme templates now"
 msgstr "Theme-Templates jetzt prüfen"
 
+msgid "The daily antivirus scan of your blog suggests alarm."
+msgstr "Die tägliche AntiVirus-Prüfung des Blogs schlägt Alarm."
+
 msgid "All clear"
 msgstr "Verdachtlos"
 
@@ -74,4 +74,7 @@ msgstr "Auf Twitter folgen"
 
 msgid "About"
 msgstr "Information"
+
+msgid "by"
+msgstr "von"
 

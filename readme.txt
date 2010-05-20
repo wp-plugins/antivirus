@@ -1,8 +1,8 @@
 === AntiVirus ===
 Contributors: stalkerX
 Tags: antivirus, virus, antispam, spam, scanner
-Requires at least: 2.6
-Tested up to: 2.9.2
+Requires at least: 2.7
+Tested up to: 3.0.0
 Stable tag: trunk
 
 AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections
@@ -13,13 +13,14 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 
 
 = Features =
-* WordPress 2.9.x ready
+* WordPress 3.x ready: Design as well as technical
 * **Detect the current [WordPress permalink back door](http://mashable.com/2009/09/05/wordpress-attack/ "WordPress permalink back door")**
 * Quick & Dirty: activate, check, done!
 * Manual testing with immediate result of the infected files
 * Daily automatic check with email notification
 * Whitelist: Mark the suspicion as "No virus"
-* English, German, Italian, Persian
+* Clean up after uninstall the plugin
+* English, German, Italian, Persian, Russian
 
 
 = Documentation =
@@ -29,6 +30,11 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 
 
 == Changelog ==
+= 0.8 =
+* Support for WordPress 3.0
+* System requirements: WordPress 2.7
+* Code optimization
+
 = 0.7 =
 * Advanced templates check
 

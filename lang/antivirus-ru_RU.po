@@ -18,33 +18,60 @@ msgstr "Подозрение на вирус"
 msgid "AntiVirus for WordPress"
 msgstr "AntiVirus для WordPress"
 
-msgid "There is no virus"
-msgstr "Это не вирус"
+msgid "requires at least WordPress 2.7"
+msgstr "требуется по меньшей мере WordPress 2.7"
+
+msgid "Last check"
+msgstr "Последний"
 
 msgid "View line"
-msgstr "Посмотреть в редакторе строку "
+msgstr "Посмотреть строку в редакторе"
 
-msgid "Enable the daily antivirus scan and send me an email if suspicion on a virus"
-msgstr "Включить ежедневное сканирование антивирусом и отправку отсчета на e-mail администратора"
+msgid "There is no virus"
+msgstr "Это не вирус"
 
 msgid "Scan finished"
 msgstr "Сканирование завершено"
 
-msgid "Last"
-msgstr "Последний"
+msgid "Enable the daily antivirus scan"
+msgstr "Включить ежедневное сканирование антивирусом"
+
+msgid "Alternate email address"
+msgstr "Ввести альтернативный email"
+
+msgid "Completed scan"
+msgstr "Завершено сканирование"
+
+msgid "Permalink back door check"
+msgstr "Проверка на Permalink back door"
+
+msgid "http://mashable.com/2009/09/05/wordpress-attack/"
+msgstr "http://blog.wordpress-deutschland.org/2009/09/05/aeltere-wordpress-versionen-ziel-von-angriffen.html"
 
 msgid "Manual scan"
 msgstr "Ручное сканирование"
 
 msgid "Scan the templates now"
-msgstr "Сканировать скины на вирусы сейчас"
+msgstr "Сканировать скины на вирусы"
+
+msgid "The daily antivirus scan of your blog suggests alarm."
+msgstr "Ежедневный осмотр AntiVirus в блоге бьет тревогу."
+
+msgid "All clear"
+msgstr "Все ясно"
+
+msgid "Danger"
+msgstr "Опасность"
+
+msgid "Learn about wpSEO"
+msgstr "Узнайте больше о wpSEO"
+
+msgid "Follow on Twitter"
+msgstr "Следуйте на Twitter"
 
 msgid "About"
 msgstr "О плагине"
 
-msgid "Enable the daily antivirus scan and send the administrator an e-mail if suspicion on a virus"
-msgstr "Включить ежедневное сканирование антивирусом и отправку отсчета на e-mail администратора"
-
-msgid "Alternate e-mail address"
-msgstr "Ввести альтернативный e-mail"
+msgid "by"
+msgstr "от"
 
