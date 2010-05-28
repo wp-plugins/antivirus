@@ -20,7 +20,7 @@ function AntiVirus() {
 $this->base_name = plugin_basename(__FILE__);
 if (defined('DOING_CRON')) {
 add_action(
-'av_daily_cronjob',
+'antivirus_daily_cronjob',
 array(
 $this,
 'exe_daily_cronjob'
@@ -207,17 +207,17 @@ $options
 );
 }
 function init_scheduled_hook() {
-if (!wp_next_scheduled('av_daily_cronjob')) {
+if (!wp_next_scheduled('antivirus_daily_cronjob')) {
 wp_schedule_event(
 time(),
 'daily',
-'av_daily_cronjob'
+'antivirus_daily_cronjob'
 );
 }
 }
 function clear_scheduled_hook() {
-if (wp_next_scheduled('av_daily_cronjob')) {
-wp_clear_scheduled_hook('av_daily_cronjob');
+if (wp_next_scheduled('antivirus_daily_cronjob')) {
+wp_clear_scheduled_hook('antivirus_daily_cronjob');
 }
 }
 function exe_daily_cronjob() {
