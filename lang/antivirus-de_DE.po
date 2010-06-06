@@ -78,3 +78,12 @@ msgstr "Information"
 msgid "by"
 msgstr "von"
 
+msgid "Security solution as a smart, effectively plugin to protect your blog against exploits and spam injections."
+msgstr "Kostenfreie Sicherheitslösung als Plugin zur Früherkennung und Warnung vor bösartigen Injektionen in Theme-Templates."
+
+msgid "Notify message by AntiVirus for WordPress"
+msgstr "Benachrichtigung von AntiVirus für WordPress"
+
+msgid "http://wpantivirus.com"
+msgstr "http://wpantivirus.de"
+

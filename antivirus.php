@@ -1,11 +1,13 @@
 <?php
 /*
 Plugin Name: AntiVirus
-Plugin URI: http://wpantivirus.com
-Description: AntiVirus for WordPress is a smart, effectively solution to protect your blog against exploits and spam injections.
+Text Domain: antivirus
+Domain Path: /lang
+Description: Security solution as a smart, effectively plugin to protect your blog against exploits and spam injections.
 Author: Sergej M&uuml;ller
-Version: 0.8
 Author URI: http://www.wpSEO.org
+Plugin URI: http://wpantivirus.com
+Version: 0.8
 */
 
 
@@ -240,9 +242,11 @@ get_bloginfo('name'),
 __('Suspicion on a virus', 'antivirus')
 ),
 sprintf(
-"%s\n%s",
+"%s\r\n%s\r\n\r\n\r\n%s\r\n%s\r\n",
 __('The daily antivirus scan of your blog suggests alarm.', 'antivirus'),
-get_bloginfo('url')
+get_bloginfo('url'),
+__('Notify message by AntiVirus for WordPress', 'antivirus'),
+__('http://wpantivirus.com', 'antivirus')
 )
 );
 $this->update_option(
