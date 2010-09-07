@@ -24,9 +24,11 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 
 
 = Documentation =
-* [Plugin documentation in German](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress")
+* [Plugin documentation in german](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress")
 * [Follow us on Twitter for updates](http://twitter.com/wpSEO "wpSEO on Twitter")
 * [Other author plugins](http://wordpress.org/extend/plugins/profile/stalkerx "Other author plugins")
+* [Plugin page](http://wpantivirus.com "WPAntiVirus.com")
+* [Author page](http://ebiene.de "Author page")
 
 
 == Changelog ==
