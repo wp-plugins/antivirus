@@ -7,11 +7,11 @@ Description: Security solution as a smart, effectively plugin to protect your bl
 Author: Sergej M&uuml;ller
 Author URI: http://www.wpSEO.org
 Plugin URI: http://wpantivirus.com
-Version: 0.8
+Version: 0.9
 */
 
 
-if (!function_exists ('is_admin')) {
+if (!function_exists('is_admin')) {
 header('Status: 403 Forbidden');
 header('HTTP/1.1 403 Forbidden');
 exit();
@@ -452,7 +452,7 @@ return '/(eval|base64_encode|base64_decode|create_function|exec|shell_exec|syste
 }
 function check_file_line($line = '', $num) {
 $line = trim($line);
-if (!$line || !$num) {
+if (!$line || !isset($num)) {
 return false;
 }
 $results = array();
