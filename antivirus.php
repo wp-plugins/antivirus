@@ -19,6 +19,9 @@ exit();
 class AntiVirus {
 var $base_name;
 function AntiVirus() {
+if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+return;
+}
 $this->base_name = plugin_basename(__FILE__);
 if (defined('DOING_CRON')) {
 add_action(
