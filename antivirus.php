@@ -7,7 +7,7 @@ Description: Security solution as a smart, effectively plugin to protect your bl
 Author: Sergej M&uuml;ller
 Author URI: http://www.wpSEO.org
 Plugin URI: http://wpantivirus.com
-Version: 0.9
+Version: 1.0
 */
 
 
@@ -235,8 +235,8 @@ time()
 );
 if ($this->check_theme_files() || $this->check_permalink_structure()) {
 $this->load_plugin_lang();
-$email = $this->get_option('notify_email');
-$email = (empty($email) ? get_bloginfo('admin_email') : $email);
+$email = sanitize_email($this->get_option('notify_email'));
+$email = ( (!empty($email) && is_email($email)) ? $email : get_bloginfo('admin_email') );
 wp_mail(
 $email,
 sprintf(
@@ -451,7 +451,7 @@ $output
 return $output;
 }
 function get_preg_match() {
-return '/(eval|base64_encode|base64_decode|create_function|exec|shell_exec|system|passthru|ob_get_contents|file|curl_init|readfile|fopen|fsockopen|pfsockopen|fclose|fread|include|include_once|require|require_once|file_put_contents)\s*?\(/';
+return '/(assert|file_get_contents|curl_exec|popen|proc_open|unserialize|eval|base64_encode|base64_decode|create_function|exec|shell_exec|system|passthru|ob_get_contents|file|curl_init|readfile|fopen|fsockopen|pfsockopen|fclose|fread|include|include_once|require|require_once|file_put_contents)\s*?\(/';
 }
 function check_file_line($line = '', $num) {
 $line = trim($line);
