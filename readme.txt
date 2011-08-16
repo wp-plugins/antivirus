@@ -1,8 +1,8 @@
 === AntiVirus ===
-Contributors: stalkerX
+Contributors: sergej.mueller
 Tags: antivirus, virus, antispam, spam, scanner
 Requires at least: 2.7
-Tested up to: 3.2.1
+Tested up to: 3.3
 Stable tag: trunk
 
 AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections
@@ -23,13 +23,14 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 * English, German, Italian, Persian, Russian
 
 
-= Documentation =
-* [Documentation](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress")
-* [Twitter](http://twitter.com/wpSEO "wpSEO on Twitter")
+= Related Links =
 * [Blog](http://playground.ebiene.de "Playground Blog")
-* [Other plugins](http://wpcoder.de "Other plugins")
+* [Flattr](http://flattr.com/profile/sergej.mueller "Flattr")
+* [Google+](https://plus.google.com/110569673423509816572 "Google+")
+* [Portfolio](http://ebiene.de "Portfolio")
 * [Plugin page](http://wpantivirus.com "WPAntiVirus.com")
-* [Author page](http://ebiene.de "Author page")
+* [Documentation](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress")
+* [Other plugins](http://wpcoder.de "Other plugins")
 
 
 == Changelog ==
