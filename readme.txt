@@ -1,20 +1,20 @@
 === AntiVirus ===
 Contributors: sergej.mueller
 Tags: antivirus, virus, antispam, spam, scanner
-Requires at least: 2.7
+Requires at least: 2.8
 Tested up to: 3.3
 Stable tag: trunk
 
-AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections
+AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections.
 
 
 == Description ==
-*AntiVirus for WordPress* is a smart and effective solution to protect your blog against exploits and spam injections. AntiVirus protection for your blog.
+*AntiVirus for WordPress* is a smart and effective solution to protect your blog against exploits and spam injections. Malware protection for your blog.
 
 
 = Features =
 * WordPress 3.x ready: Design as well as technical
-* **Detect the current [WordPress permalink back door](http://mashable.com/2009/09/05/wordpress-attack/ "WordPress permalink back door")**
+* Detect the [WordPress permalink back door](http://mashable.com/2009/09/05/wordpress-attack/ "WordPress permalink back door")
 * Quick & Dirty: activate, check, done!
 * Manual testing with immediate result of the infected files
 * Daily automatic check with email notification
@@ -29,11 +29,17 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 * [Google+](https://plus.google.com/110569673423509816572 "Google+")
 * [Portfolio](http://ebiene.de "Portfolio")
 * [Plugin page](http://wpantivirus.com "WPAntiVirus.com")
-* [Documentation](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress")
 * [Other plugins](http://wpcoder.de "Other plugins")
+* [Documentation](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress")
 
 
 == Changelog ==
+= 1.1 =
+* Testing for templates with empty content
+* Minimum requirement upgraded to 2.8
+* Code improvements for more speed
+* GUI changes
+
 = 1.0 =
 * More security checks (Email & Regexp)
 

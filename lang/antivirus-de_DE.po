@@ -21,8 +21,8 @@ msgstr "Virusverdacht"
 msgid "AntiVirus for WordPress"
 msgstr "AntiVirus für WordPress"
 
-msgid "requires at least WordPress 2.7"
-msgstr "benötigt WordPress 2.7"
+msgid "requires at least WordPress 2.8"
+msgstr "benötigt WordPress 2.8"
 
 msgid "Last check"
 msgstr "Zuletzt"
@@ -66,17 +66,11 @@ msgstr "Verdachtlos"
 msgid "Danger"
 msgstr "Gefahr"
 
-msgid "Learn about wpSEO"
-msgstr "wpSEO kennenlernen"
+msgid "Flattr plugin"
+msgstr "Plugin flattern"
 
-msgid "Follow on Twitter"
-msgstr "Auf Twitter folgen"
-
-msgid "About"
-msgstr "Information"
-
-msgid "by"
-msgstr "von"
+msgid "Follow on Google+"
+msgstr "Auf Google+ folgen"
 
 msgid "Security solution as a smart, effectively plugin to protect your blog against exploits and spam injections."
 msgstr "Kostenfreie Sicherheitslösung als Plugin zur Früherkennung und Warnung vor bösartigen Injektionen in Theme-Templates."
