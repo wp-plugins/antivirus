@@ -36,7 +36,7 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 == Changelog ==
 = 1.1 =
 * Testing for templates with empty content
-* Minimum requirement upgraded to 2.8
+* Minimum requirement upgraded to 2.8 and PHP5
 * Code improvements for more speed
 * GUI changes
 
