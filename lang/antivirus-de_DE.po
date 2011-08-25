@@ -81,3 +81,6 @@ msgstr "Benachrichtigung von AntiVirus für WordPress"
 msgid "http://wpantivirus.com"
 msgstr "http://wpantivirus.de"
 
+msgid "http://www.wpSEO.org"
+msgstr "http://www.wpSEO.de"
+
