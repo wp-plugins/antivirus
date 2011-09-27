@@ -603,10 +603,9 @@ if ( !self::get_option('cronjob_alert') ) {
 return;
 }
 echo sprintf(
-'<div class="updated fade"><p><strong>%s:</strong> %s <a href="options-general.php?page=%s">%s</a></p></div>',
+'<div class="updated fade"><p><strong>%s:</strong> %s <a href="options-general.php?page=antivirus">%s</a></p></div>',
 esc_html__('Suspicion on a virus', 'antivirus'),
 esc_html__('The daily antivirus scan of your blog suggests alarm.', 'antivirus'),
-self::$base,
 esc_html__('Manual scan', 'antivirus')
 );
 }
