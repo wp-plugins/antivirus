@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
-msgid "Suspicion on a virus"
+msgid "Virus suspected"
 msgstr "Virusverdacht"
 
 msgid "AntiVirus for WordPress"
@@ -80,7 +80,4 @@ msgstr "Benachrichtigung von AntiVirus für WordPress"
 
 msgid "http://wpantivirus.com"
 msgstr "http://wpantivirus.de"
-
-msgid "http://www.wpSEO.org"
-msgstr "http://www.wpSEO.de"
 

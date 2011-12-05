@@ -24,7 +24,7 @@ msgstr "Configurações"
 
 #: ../antivirus.php:245
 #: ../antivirus.php:590
-msgid "Suspicion on a virus"
+msgid "Virus suspected"
 msgstr "Suspeita de vírus"
 
 #: ../antivirus.php:249
@@ -128,16 +128,19 @@ msgstr "Sobre"
 
 #~ msgid "Plugin"
 #~ msgstr "Plugin"
+
 #~ msgid "Version"
 #~ msgstr "Versão"
+
 #~ msgid "Author"
 #~ msgstr "Autor"
+
 #~ msgid ""
 #~ "Enable the daily antivirus scan and send the administrator an e-mail if "
-#~ "suspicion on a virus"
+#~ "Virus suspected"
 #~ msgstr ""
 #~ "Ativar o antivírus diariamente, verificar e enviar ao administrador um "
 #~ "email se há suspeita de um vírus."
+
 #~ msgid "Last"
 #~ msgstr "Último"
-

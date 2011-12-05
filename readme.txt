@@ -1,6 +1,7 @@
 === AntiVirus ===
 Contributors: sergej.mueller
-Tags: antivirus, virus, antispam, spam, scanner
+Tags: antivirus, virus, antispam, spam, scanner, malware
+Donate link: http://flattr.com/profile/sergej.mueller
 Requires at least: 2.8
 Tested up to: 3.3
 Stable tag: trunk
@@ -13,6 +14,7 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 
 
 = Features =
+* [NEW] Virus alert in the admin bar
 * WordPress 3.x ready: Design as well as technical
 * Detect the [WordPress permalink back door](http://mashable.com/2009/09/05/wordpress-attack/ "WordPress permalink back door")
 * Quick & Dirty: activate, check, done!
@@ -24,16 +26,18 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 
 
 = Related Links =
-* [Blog](http://playground.ebiene.de "Playground Blog")
-* [Flattr](http://flattr.com/profile/sergej.mueller "Flattr")
 * [Google+](https://plus.google.com/110569673423509816572 "Google+")
-* [Portfolio](http://ebiene.de "Portfolio")
-* [Plugin page](http://wpantivirus.com "WPAntiVirus.com")
-* [Other plugins](http://wpcoder.de "Other plugins")
-* [Documentation](http://playground.ebiene.de/1577/antivirus-wordpress-plugin/ "AntiVirus for WordPress")
+* [Plugin page](http://wpantivirus.com "WordPress Antivirus Plugin")
+* [Other plugins](http://wordpress.org/extend/plugins/profile/sergejmueller "Other plugins")
 
 
 == Changelog ==
+= 1.2 =
+* "Virus suspected" alert in the admin bar
+* Fix for the manual scan link on dashboard
+* More detailed checks for existing malware
+* Code adjustments for WordPress 3.3
+
 = 1.1 =
 * Testing for templates with empty content
 * Minimum requirement upgraded to 2.8 and PHP5

@@ -19,7 +19,7 @@ msgstr ""
 msgid "Settings"
 msgstr "تنظیمات"
 
-msgid "Suspicion on a virus"
+msgid "Virus suspected"
 msgstr "مظنون به یک ویروس"
 
 msgid "The daily antivirus scan of your blog suggests alarm."

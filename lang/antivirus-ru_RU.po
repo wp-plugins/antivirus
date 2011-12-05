@@ -12,7 +12,7 @@ msgstr ""
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 
-msgid "Suspicion on a virus"
+msgid "Virus suspected"
 msgstr "Подозрение на вирус"
 
 msgid "AntiVirus for WordPress"

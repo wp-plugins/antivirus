@@ -5,9 +5,9 @@ Text Domain: antivirus
 Domain Path: /lang
 Description: Security solution as a smart, effectively plugin to protect your blog against exploits and spam injections.
 Author: Sergej M&uuml;ller
-Author URI: http://www.wpSEO.org
+Author URI: http://wpseo.de
 Plugin URI: http://wpantivirus.com
-Version: 1.1
+Version: 1.2
 */
 
 
@@ -20,7 +20,7 @@ class AntiVirus {
 private static $base;
 public static function init()
 {
-if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+if ( (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) or (defined('XMLRPC_REQUEST') && XMLRPC_REQUEST) ) {
 return;
 }
 self::$base = plugin_basename(__FILE__);
@@ -33,7 +33,7 @@ __CLASS__,
 )
 );
 } elseif ( is_admin() ) {
-if (defined('DOING_AJAX')) {
+if ( defined('DOING_AJAX') ) {
 add_action(
 'wp_ajax_get_ajax_response',
 array(
@@ -46,10 +46,17 @@ add_action(
 'admin_menu',
 array(
 __CLASS__,
-'init_admin_menu'
+'add_sidebar_menu'
 )
 );
-if ( self::is_current_page('home') ) {
+add_action(
+'admin_bar_menu',
+array(
+__CLASS__,
+'add_adminbar_menu'
+),
+91
+);
 add_action(
 'admin_print_styles',
 array(
@@ -57,6 +64,7 @@ __CLASS__,
 'add_enqueue_style'
 )
 );
+if ( self::is_current_page('home') ) {
 add_action(
 'admin_print_scripts',
 array(
@@ -99,13 +107,6 @@ add_action(
 array(
 __CLASS__,
 'clear_scheduled_hook'
-)
-);
-add_action(
-'admin_notices',
-array(
-__CLASS__,
-'show_version_notice'
 )
 );
 add_filter(
@@ -262,7 +263,7 @@ $email,
 sprintf(
 '[%s] %s',
 get_bloginfo('name'),
-esc_html__('Suspicion on a virus', 'antivirus')
+esc_html__('Virus suspected', 'antivirus')
 ),
 sprintf(
 "%s\r\n%s\r\n\r\n\r\n%s\r\n%s\r\n",
@@ -278,7 +279,7 @@ self::update_option(
 );
 }
 }
-public static function init_admin_menu()
+public static function add_sidebar_menu()
 {
 add_options_page(
 'AntiVirus',
@@ -324,14 +325,6 @@ array(),
 $data['Version']
 );
 wp_enqueue_style('av_css');
-}
-private static function is_min_wp($version)
-{
-return version_compare(
-$GLOBALS['wp_version'],
-$version. 'alpha',
-'>='
-);
 }
 private static function get_current_theme()
 {
@@ -467,7 +460,7 @@ return $output;
 }
 private static function get_preg_match()
 {
-return '/(assert|file_get_contents|curl_exec|popen|proc_open|unserialize|eval|base64_encode|base64_decode|create_function|exec|shell_exec|system|passthru|ob_get_contents|file|curl_init|readfile|fopen|fsockopen|pfsockopen|fclose|fread|include|include_once|require|require_once|file_put_contents)\s*?\(/';
+return '/(assert|file_get_contents|curl_exec|popen|proc_open|unserialize|eval|base64_encode|base64_decode|create_function|exec|shell_exec|system|passthru|ob_get_contents|file|curl_init|readfile|fopen|fsockopen|pfsockopen|fclose|fread|include|include_once|require|require_once|file_put_contents|iframe)\s*?\(/';
 }
 private static function check_file_line($line = '', $num)
 {
@@ -587,26 +580,41 @@ default:
 return false;
 }
 }
-public static function show_version_notice()
-{
-if ( self::is_min_wp('2.8') ) {
-return;
-}
-echo sprintf(
-'<div class="error"><p><strong>%s</strong> %s</p></div>',
-esc_html__('AntiVirus for WordPress', 'antivirus'),
-esc_html__('requires at least WordPress 2.8', 'antivirus')
-);
-}
 public static function show_dashboard_notice() {
 if ( !self::get_option('cronjob_alert') ) {
 return;
 }
 echo sprintf(
-'<div class="updated fade"><p><strong>%s:</strong> %s <a href="options-general.php?page=antivirus">%s</a></p></div>',
-esc_html__('Suspicion on a virus', 'antivirus'),
+'<div class="updated fade"><p><strong>%1$s:</strong> %2$s <a href="%3$s">%4$s &rarr;</a></p></div>',
+esc_html__('Virus suspected', 'antivirus'),
 esc_html__('The daily antivirus scan of your blog suggests alarm.', 'antivirus'),
+add_query_arg(
+array(
+'page' => 'antivirus'
+),
+admin_url('options-general.php')
+),
 esc_html__('Manual scan', 'antivirus')
+);
+}
+public static function add_adminbar_menu( $wp_admin_bar ) {
+if ( !self::get_option('cronjob_alert') ) {
+return;
+}
+if ( !function_exists('is_admin_bar_showing') or !is_admin_bar_showing() or !is_object($wp_admin_bar) ) {
+return;
+}
+$wp_admin_bar->add_menu(
+array(
+'id'=> 'av_alert',
+'title' => '<span class="ab-icon"></span><span class="ab-label">' .esc_html__('Virus suspected', 'antivirus'). '</span>',
+'href'=> add_query_arg(
+array(
+'page' => 'antivirus'
+),
+admin_url('options-general.php')
+)
+)
 );
 }
 public static function show_admin_menu() {

@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
-msgid "Suspicion on a virus"
+msgid "Virus suspected"
 msgstr "Sospetto di un virus"
 
 msgid "The daily antivirus scan of your blog suggests alarm."

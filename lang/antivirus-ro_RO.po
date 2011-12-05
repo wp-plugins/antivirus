@@ -16,7 +16,7 @@ msgstr ""
 msgid "Settings"
 msgstr "Setări"
 
-msgid "Suspicion on a virus"
+msgid "Virus suspected"
 msgstr "Suspiciune de virus"
 
 msgid "The daily antivirus scan of your blog suggests alarm."
