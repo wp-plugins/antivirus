@@ -43,6 +43,13 @@ __CLASS__,
 );
 } else {
 add_action(
+'init',
+array(
+__CLASS__,
+'load_plugin_lang'
+)
+);
+add_action(
 'admin_menu',
 array(
 __CLASS__,
@@ -56,6 +63,13 @@ __CLASS__,
 'add_adminbar_menu'
 ),
 91
+);
+add_action(
+'admin_notices',
+array(
+__CLASS__,
+'show_dashboard_notice'
+)
 );
 add_action(
 'admin_print_styles',
@@ -72,36 +86,7 @@ __CLASS__,
 'add_enqueue_script'
 )
 );
-add_action(
-'init',
-array(
-__CLASS__,
-'load_plugin_lang'
-)
-);
-} else if ( self::is_current_page('index') ) {
-add_action(
-'init',
-array(
-__CLASS__,
-'load_plugin_lang'
-)
-);
-add_action(
-'admin_notices',
-array(
-__CLASS__,
-'show_dashboard_notice'
-)
-);
 } else if ( self::is_current_page('plugins') ) {
-add_action(
-'init',
-array(
-__CLASS__,
-'load_plugin_lang'
-)
-);
 add_action(
 'deactivate_' .self::$base,
 array(
@@ -283,7 +268,7 @@ public static function add_sidebar_menu()
 {
 add_options_page(
 'AntiVirus',
-'<img src="' .plugins_url('antivirus/img/icon.png'). '" id="av_icon" alt="AntiVirus Icon" />AntiVirus',
+'<span id="av_sidebar_icon"></span>AntiVirus',
 'manage_options',
 'antivirus',
 array(
@@ -584,6 +569,9 @@ public static function show_dashboard_notice() {
 if ( !self::get_option('cronjob_alert') ) {
 return;
 }
+if ( function_exists('is_admin_bar_showing') && is_admin_bar_showing() ) {
+return;
+}
 echo sprintf(
 '<div class="updated fade"><p><strong>%1$s:</strong> %2$s <a href="%3$s">%4$s &rarr;</a></p></div>',
 esc_html__('Virus suspected', 'antivirus'),
@@ -601,7 +589,7 @@ public static function add_adminbar_menu( $wp_admin_bar ) {
 if ( !self::get_option('cronjob_alert') ) {
 return;
 }
-if ( !function_exists('is_admin_bar_showing') or !is_admin_bar_showing() or !is_object($wp_admin_bar) ) {
+if ( !function_exists('is_admin_bar_showing') or !is_admin_bar_showing() ) {
 return;
 }
 $wp_admin_bar->add_menu(
