@@ -629,7 +629,7 @@ self::update_options($options); ?>
 </p>
 </div>
 <?php } ?>
-<div class="wrap">
+<div class="wrap" id="av_main">
 <div class="icon32"></div>
 <h2>
 AntiVirus
