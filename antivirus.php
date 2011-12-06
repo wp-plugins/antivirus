@@ -594,7 +594,7 @@ return;
 }
 $wp_admin_bar->add_menu(
 array(
-'id'=> 'av_alert',
+'id'=> 'antivirus',
 'title' => '<span class="ab-icon"></span><span class="ab-label">' .esc_html__('Virus suspected', 'antivirus'). '</span>',
 'href'=> add_query_arg(
 array(
