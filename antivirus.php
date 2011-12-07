@@ -688,7 +688,7 @@ AntiVirus
 echo sprintf(
 '&nbsp;(%s @ %s)',
 esc_html__('Last check', 'antivirus'),
-date_i18n('d.m.Y H:i:s', (self::get_option('cronjob_timestamp') + get_option('gmt_offset') * 60))
+date_i18n('d.m.Y H:i:s', (self::get_option('cronjob_timestamp') + get_option('gmt_offset') * 3600))
 );
 } ?>
 </label>
