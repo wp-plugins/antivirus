@@ -1,37 +1,46 @@
 === AntiVirus ===
 Contributors: sergej.mueller
-Tags: antivirus, virus, antispam, spam, scanner, malware
+Tags: antivirus, malware, scanner
 Donate link: http://flattr.com/profile/sergej.mueller
 Requires at least: 2.8
 Tested up to: 3.3
 Stable tag: trunk
 
-AntiVirus for WordPress is a smart and effective solution to protect your blog against exploits and spam injections.
+
+
+Useful plugin that will scan your theme templates for malicious injections. Automatically. Every day. For more blog security.
+
 
 
 == Description ==
-*AntiVirus for WordPress* is a smart and effective solution to protect your blog against exploits and spam injections. Malware protection for your blog.
 
+= Scan & Notify =
+*AntiVirus for WordPress* is a easy and safe tool to protect your blog install against exploits, malware and spam injections. Scan your templates now!
 
 = Features =
-* [NEW] Virus alert in the admin bar
-* WordPress 3.x ready: Design as well as technical
-* Detect the [WordPress permalink back door](http://mashable.com/2009/09/05/wordpress-attack/ "WordPress permalink back door")
-* Quick & Dirty: activate, check, done!
-* Manual testing with immediate result of the infected files
-* Daily automatic check with email notification
-* Whitelist: Mark the suspicion as "No virus"
-* Clean up after uninstall the plugin
-* English, German, Italian, Persian, Russian
+* Virus alert in the admin bar
+* Cleaning up after plugin removal
+* Translations into many languages​​
+* Daily scan with email notifications
+* Database tables and theme templates checks
+* WordPress 3.x ready: both visually and technically
+* Whitelist solution: Mark suspected cases as "no virus"
+* Manual check of template files with alerts on suspected cases
 
+= Documentation =
+* [Sicherheit: AntiVirus für WordPress](http://playground.ebiene.de/antivirus-wordpress-plugin/ "AntiVirus für WordPress") (DE)
 
-= Related Links =
+= Author =
 * [Google+](https://plus.google.com/110569673423509816572 "Google+")
-* [Plugin page](http://wpantivirus.com "WordPress Antivirus Plugin")
-* [Other plugins](http://wordpress.org/extend/plugins/profile/sergejmueller "Other plugins")
+* [Portfolio](http://ebiene.de "Portfolio")
+
 
 
 == Changelog ==
+
+= 1.3 =
+* Xmas Edition
+
 = 1.2 =
 * "Virus suspected" alert in the admin bar
 * Fix for the manual scan link on dashboard
@@ -89,16 +98,7 @@ AntiVirus for WordPress is a smart and effective solution to protect your blog a
 * AntiVirus for WordPress goes online
 
 
+
 == Screenshots ==
 
 1. WordPress AntiVirus settings
-
-
-== Installation ==
-1. Download *AntiVirus* plugin
-1. Unzip the archive
-1. Upload the folder *antivirus* into *../wp-content/plugins/*
-1. Go to tab *Plugins*
-1. Activate *AntiVirus*
-1. Edit settings
-1. Ready

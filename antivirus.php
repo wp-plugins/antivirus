@@ -7,7 +7,7 @@ Description: Security solution as a smart, effectively plugin to protect your bl
 Author: Sergej M&uuml;ller
 Author URI: http://wpseo.de
 Plugin URI: http://wpantivirus.com
-Version: 1.2
+Version: 1.3
 */
 
 
