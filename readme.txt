@@ -1,9 +1,9 @@
 === AntiVirus ===
 Contributors: sergej.mueller
 Tags: antivirus, malware, scanner
-Donate link: http://flattr.com/profile/sergej.mueller
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5RDDW9FEHGLG6
 Requires at least: 2.8
-Tested up to: 3.3
+Tested up to: 3.4
 Stable tag: trunk
 
 
@@ -27,16 +27,27 @@ Useful plugin that will scan your theme templates for malicious injections. Auto
 * Whitelist solution: Mark suspected cases as "no virus"
 * Manual check of template files with alerts on suspected cases
 
+= Requirements =
+* PHP 5.1
+* WordPress 2.8
+
 = Documentation =
 * [Sicherheit: AntiVirus für WordPress](http://playground.ebiene.de/antivirus-wordpress-plugin/ "AntiVirus für WordPress") (DE)
 
 = Author =
 * [Google+](https://plus.google.com/110569673423509816572 "Google+")
+* [Plugins](http://wpcoder.de "Plugins")
 * [Portfolio](http://ebiene.de "Portfolio")
 
 
 
 == Changelog ==
+
+= 1.3.1 =
+* Compatibility with WordPress 3.4
+* High-resolution plugin icon for retina displays
+* Remove icon from the admin sidebar
+* System requirements: From PHP 5.0 to PHP 5.1
 
 = 1.3 =
 * Xmas Edition
