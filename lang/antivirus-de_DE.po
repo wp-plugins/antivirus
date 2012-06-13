@@ -31,7 +31,7 @@ msgid "View line"
 msgstr "Zeige Zeile"
 
 msgid "There is no virus"
-msgstr "Ist kein Virus"
+msgstr "Als 'Kein Virus' markieren"
 
 msgid "Scan finished"
 msgstr "Prüfung abgeschlossen"

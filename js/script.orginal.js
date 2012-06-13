@@ -54,7 +54,7 @@ jQuery(document).ready(
 								line = lines[i + 1].replace(/@span@/g, '<span>').replace(/@\/span@/g, '</span>'),
 								file = item.text();
 							
-							item.append('<p><a href="#" id="' + md5 + '">' + av_msg_1 + '</a> <a href="theme-editor.php?file=' + file + '&theme=' + av_theme + '&dir=theme" target="_blank">' + av_msg_2 + ' ' + num + '</a><code>' + line + '</code></p>');
+							item.append('<p><a href="#" id="' + md5 + '">' + av_msg_1 + '</a> <code>' + line + '</code></p>');
 							
 							$('#' + md5).click(
 								function() {

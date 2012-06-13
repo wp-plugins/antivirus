@@ -543,9 +543,11 @@ class AntiVirus {
 		/* Ab WP 3.4 */
 		if ( function_exists('wp_get_theme') ) {
 			/* Init */
-			$name = wp_get_theme()->get('Name');
-			$files = glob(get_template_directory(). '/*.php', GLOB_NOSORT|GLOB_ERR);
-			
+			$theme = wp_get_theme();
+			$name = $theme->get('Name');
+			$slug = $theme->get_stylesheet();
+			$files = $theme->get_files('php', 1);
+
 			/* Leer? */
 			if ( empty($name) or empty($files) ) {
 				return false;
@@ -554,6 +556,7 @@ class AntiVirus {
 			/* Rückgabe */
 			return array(
 				'Name' => $name,
+				'Slug' => $slug,
 				'Template Files' => $files
 			);
 		/* Bis WP 3.4 */
@@ -611,7 +614,7 @@ class AntiVirus {
 	* Rückgabe des Namen des aktuellen Theme
 	*
 	* @since   0.1
-	* @change  0.8
+	* @change  1.3.1
 	*
 	* @return  string  $theme  Name des aktuellen Theme
 	*/
@@ -619,7 +622,10 @@ class AntiVirus {
 	private static function get_theme_name()
 	{
 		if ( $theme = self::get_current_theme() ) {
-			if (!empty($theme['Name'])) {
+			if ( !empty($theme['Slug']) ) {
+				return $theme['Slug'];
+			}
+			if ( !empty($theme['Name']) ) {
 				return $theme['Name'];
 			}
 		}
