@@ -43,6 +43,9 @@ Useful plugin that will scan your theme templates for malicious injections. Auto
 
 == Changelog ==
 
+= 1.3.2 =
+* Remove the check for include and require commands (#wpforce)
+
 = 1.3.1 =
 * Compatibility with WordPress 3.4
 * High-resolution plugin icon for retina displays

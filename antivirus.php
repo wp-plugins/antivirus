@@ -7,7 +7,7 @@ Description: Security solution as a smart, effectively plugin to protect your bl
 Author: Sergej M&uuml;ller
 Author URI: http://wpseo.de
 Plugin URI: http://wpantivirus.com
-Version: 1.3.1
+Version: 1.3.2
 */
 
 
@@ -814,7 +814,7 @@ class AntiVirus {
 
 	private static function get_preg_match()
 	{
-		return '/(assert|file_get_contents|curl_exec|popen|proc_open|unserialize|eval|base64_encode|base64_decode|create_function|exec|shell_exec|system|passthru|ob_get_contents|file|curl_init|readfile|fopen|fsockopen|pfsockopen|fclose|fread|include|include_once|require|require_once|file_put_contents|iframe)\s*?\(/';
+		return '/(assert|file_get_contents|curl_exec|popen|proc_open|unserialize|eval|base64_encode|base64_decode|create_function|exec|shell_exec|system|passthru|ob_get_contents|file|curl_init|readfile|fopen|fsockopen|pfsockopen|fclose|fread|file_put_contents|iframe)\s*?\(/';
 	}
 
 
