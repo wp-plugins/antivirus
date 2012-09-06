@@ -3,7 +3,7 @@ Contributors: sergej.mueller
 Tags: antivirus, malware, scanner
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5RDDW9FEHGLG6
 Requires at least: 2.8
-Tested up to: 3.4
+Tested up to: 3.5
 Stable tag: trunk
 
 
@@ -42,6 +42,10 @@ Useful plugin that will scan your theme templates for malicious injections. Auto
 
 
 == Changelog ==
+
+= 1.3.3 =
+* Add inspection for iFrames
+* Retina support for teaser and screenshot
 
 = 1.3.2 =
 * Remove the check for include and require commands (#wpforce)

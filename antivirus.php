@@ -7,7 +7,7 @@ Description: Security solution as a smart, effectively plugin to protect your bl
 Author: Sergej M&uuml;ller
 Author URI: http://wpseo.de
 Plugin URI: http://wpantivirus.com
-Version: 1.3.2
+Version: 1.3.3
 */
 
 
@@ -807,14 +807,14 @@ class AntiVirus {
 	* Definition des Regexp
 	*
 	* @since   0.1
-	* @change  1.2
+	* @change  1.3.3
 	*
 	* @return  string  return  Regulärer Ausdruck
 	*/
 
-	private static function get_preg_match()
+	private static function php_match_pattern()
 	{
-		return '/(assert|file_get_contents|curl_exec|popen|proc_open|unserialize|eval|base64_encode|base64_decode|create_function|exec|shell_exec|system|passthru|ob_get_contents|file|curl_init|readfile|fopen|fsockopen|pfsockopen|fclose|fread|file_put_contents|iframe)\s*?\(/';
+		return '/(assert|file_get_contents|curl_exec|popen|proc_open|unserialize|eval|base64_encode|base64_decode|create_function|exec|shell_exec|system|passthru|ob_get_contents|file|curl_init|readfile|fopen|fsockopen|pfsockopen|fclose|fread|file_put_contents)\s*?\(/';
 	}
 
 
@@ -822,7 +822,7 @@ class AntiVirus {
 	* Prüfung einer Zeile
 	*
 	* @since   0.1
-	* @change  1.1
+	* @change  1.3.3
 	*
 	* @param   string   $line  Zeile zur Prüfung
 	* @param   integer  $num   Nummer zur Prüfung
@@ -845,7 +845,7 @@ class AntiVirus {
 
 		/* Befehle suchen */
 		preg_match_all(
-			self::get_preg_match(),
+			self::php_match_pattern(),
 			$line,
 			$matches
 		);
@@ -869,7 +869,7 @@ class AntiVirus {
 
 		/* Frames suchen */
 		preg_match_all(
-			'/<\s*?(frame)/',
+			'/<\s*?(i?frame)/',
 			$line,
 			$matches
 		);
@@ -1010,7 +1010,7 @@ class AntiVirus {
 		if ( $structure = get_option('permalink_structure') ) {
 			/* Befehle suchen */
 			preg_match_all(
-				self::get_preg_match(),
+				self::php_match_pattern(),
 				$structure,
 				$matches
 			);
