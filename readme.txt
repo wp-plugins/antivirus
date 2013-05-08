@@ -59,7 +59,7 @@ Useful plugin that will scan your theme templates for malicious injections. Auto
 == Changelog ==
 
 = 1.3.4 =
-* Deutsch: Benachrichtigung per E-Mail, sobald [Google Safe Browsing](http://en.wikipedia.org/wiki/Google_Safe_Browsing) Malware im Blog erkennt.
+* Deutsch: Benachrichtigung per E-Mail, sobald [Google Safe Browsing](http://en.wikipedia.org/wiki/Google_Safe_Browsing) Malware im Blog erkennt. [Mehr auf Google+](https://plus.google.com/110569673423509816572/posts/H72FFwvna1i)
 * English: [Google Safe Browsing](http://en.wikipedia.org/wiki/Google_Safe_Browsing) for malware and phishing monitoring.
 
 = 1.3.3 =
