@@ -3,7 +3,7 @@ Contributors: sergej.mueller
 Tags: antivirus, malware, scanner, phishing, safe browsing
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5RDDW9FEHGLG6
 Requires at least: 2.8
-Tested up to: 3.6
+Tested up to: 3.7
 Stable tag: trunk
 
 
