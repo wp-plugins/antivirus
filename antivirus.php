@@ -1196,7 +1196,7 @@ class AntiVirus {
 								<a href="#" class="button button-primary">
 									<?php esc_html_e('Scan the theme templates now', 'antivirus') ?>
 								</a>
-								<span class="alert">Ahahahahaha</span>
+								<span class="alert"></span>
 							</p>
 							<div class="output"></div>
 						</div>
