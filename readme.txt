@@ -3,7 +3,7 @@ Contributors: sergej.mueller
 Tags: antivirus, malware, scanner, phishing, safe browsing
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5RDDW9FEHGLG6
 Requires at least: 3.8
-Tested up to: 3.9
+Tested up to: 3.9.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -51,7 +51,7 @@ Useful plugin that will scan your theme templates for malicious injections. Auto
 
 
 = Author =
-* [Twitter](https://twitter.com/wpSEO)
+* [Twitter](https://twitter.com/wpseo)
 * [Google+](https://plus.google.com/110569673423509816572)
 * [Plugins](http://wpcoder.de)
 
@@ -59,6 +59,10 @@ Useful plugin that will scan your theme templates for malicious injections. Auto
 
 
 == Changelog ==
+
+= 1.3.6 =
+* Deutsch: Code-Revision und Datenvalidierung
+* English: Code revision and data validation
 
 = 1.3.5 =
 * Deutsch: Optimierungen für WordPress 3.8
