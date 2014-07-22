@@ -60,6 +60,10 @@ Useful plugin that will scan your theme templates for malicious injections. Auto
 
 == Changelog ==
 
+= 1.3.7 =
+* Deutsch: Aktualisierung auf Safe Browsing Lookup API 3.1
+* English: Update the Google Safe Browsing Lookup API to v3.1
+
 = 1.3.6 =
 * Deutsch: Code-Revision und Datenvalidierung
 * English: Code revision and data validation

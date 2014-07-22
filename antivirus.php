@@ -8,7 +8,7 @@ Author: Sergej M&uuml;ller
 Author URI: http://wpcoder.de
 Plugin URI: http://wpantivirus.com
 License: GPLv2 or later
-Version: 1.3.6
+Version: 1.3.7
 */
 
 /*
@@ -413,7 +413,7 @@ class AntiVirus {
 	* Führt die Safe Browsing Prüfung aus
 	*
 	* @since   1.3.4
-	* @change  1.3.4
+	* @change  1.3.7
 	*/
 
 	private static function _check_safe_browsing()
@@ -426,8 +426,8 @@ class AntiVirus {
 		/* Start request */
 		$response = wp_remote_get(
 			sprintf(
-				'https://sb-ssl.google.com/safebrowsing/api/lookup?client=wpantivirus&apikey=%s&appver=0.1&pver=3.0&url=%s',
-				'ABQIAAAAsu9cf81zMEioUOLBi7TrhhTJnIkNNG4BG3awC5RGoTZgJ-xX-A', /* API Key reserved for AntiVirus */
+				'https://sb-ssl.google.com/safebrowsing/api/lookup?client=wpantivirus&key=%s&appver=1.3.7&pver=3.1&url=%s',
+				'AIzaSyALNYwuy-Pidn7vx3-In-hU0zgMH5Wr42U',
 				urlencode( get_bloginfo('url') )
 			),
 			array(
@@ -449,7 +449,7 @@ class AntiVirus {
 		self::_send_warning_notification(
 			esc_html__('Safe Browsing Alert', 'antivirus'),
 			sprintf(
-				"%s\r\nhttp://www.google.com/safebrowsing/diagnostic?site=%s&hl=%s",
+				"%s\r\nhttps://www.google.com/safebrowsing/diagnostic?site=%s&hl=%s",
 				esc_html__('Please check the Google Safe Browsing diagnostic page:', 'antivirus'),
 				urlencode( get_bloginfo('url') ),
 				substr(get_locale(), 0, 2)
