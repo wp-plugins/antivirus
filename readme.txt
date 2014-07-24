@@ -60,6 +60,10 @@ Useful plugin that will scan your theme templates for malicious injections. Auto
 
 == Changelog ==
 
+= 1.3.8 =
+* Deutsch: Erkennung der [MailPoet-Sicherheitslücke](http://blog.sucuri.net/2014/07/mailpoet-vulnerability-exploited-in-the-wild-breaking-thousands-of-wordpress-sites.html)
+* English: Detection and warning for the [MailPoet Vulnerability](http://blog.sucuri.net/2014/07/mailpoet-vulnerability-exploited-in-the-wild-breaking-thousands-of-wordpress-sites.html)
+
 = 1.3.7 =
 * Deutsch: Aktualisierung auf Safe Browsing Lookup API 3.1
 * English: Update the Google Safe Browsing Lookup API to v3.1

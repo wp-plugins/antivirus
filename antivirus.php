@@ -8,7 +8,7 @@ Author: Sergej M&uuml;ller
 Author URI: http://wpcoder.de
 Plugin URI: http://wpantivirus.com
 License: GPLv2 or later
-Version: 1.3.7
+Version: 1.3.8
 */
 
 /*
@@ -753,6 +753,11 @@ class AntiVirus {
 			exit();
 		}
 
+		/* Capability check */
+		if ( ! current_user_can('manage_options') ) {
+			return;
+		}
+
 		/* Init */
 		$values = array();
 		$output = '';
@@ -907,7 +912,7 @@ class AntiVirus {
 	* Prüfung einer Zeile
 	*
 	* @since   0.1
-	* @change  1.3.4
+	* @change  1.3.8
 	*
 	* @param   string   $line  Zeile zur Prüfung
 	* @param   integer  $num   Nummer zur Prüfung
@@ -940,6 +945,7 @@ class AntiVirus {
 			$results = $matches[1];
 		}
 
+
 		/* Base64 suchen */
 		preg_match_all(
 			'/[\'\"\$\\ \/]*?([a-zA-Z0-9]{' .strlen(base64_encode('sergej + swetlana = love.')). ',})/', /* get length of my life ;) */
@@ -952,6 +958,7 @@ class AntiVirus {
 			$results = array_merge($results, $matches[1]);
 		}
 
+
 		/* Frames suchen */
 		preg_match_all(
 			'/<\s*?(i?frame)/',
@@ -963,6 +970,20 @@ class AntiVirus {
 		if ( $matches[1] ) {
 			$results = array_merge($results, $matches[1]);
 		}
+
+
+		/* MailPoet Vulnerability */
+		preg_match_all(
+			'/explode\s?\(chr\s?\(\s?\(\d{3}\s?-\s?\d{3}\s?\)\s?\)\s?,/',
+			$line,
+			$matches
+		);
+
+		/* Ergebnis speichern */
+		if ( $matches[0] ) {
+			$results = array_merge($results, $matches[0]);
+		}
+
 
 		/* Option suchen */
 		preg_match(
