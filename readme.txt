@@ -1,7 +1,7 @@
 === AntiVirus ===
 Contributors: sergej.mueller
 Tags: antivirus, malware, scanner, phishing, safe browsing, vulnerability
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5RDDW9FEHGLG6
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZAQUT9RLPW8QN
 Requires at least: 3.8
 Tested up to: 4.0
 Stable tag: trunk
@@ -39,7 +39,7 @@ Useful plugin that will scan your theme templates for malicious injections. Auto
 
 = Donation =
 * [Flattr](https://flattr.com/t/1322865)
-* [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5RDDW9FEHGLG6)
+* [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZAQUT9RLPW8QN)
 
 
 = Documentation =

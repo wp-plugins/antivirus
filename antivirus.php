@@ -226,7 +226,7 @@ class AntiVirus {
 			$data,
 			array(
 				'<a href="https://flattr.com/t/1322865" target="_blank">Flattr</a>',
-				'<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=5RDDW9FEHGLG6" target="_blank">PayPal</a>'
+				'<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=ZAQUT9RLPW8QN" target="_blank">PayPal</a>'
 			)
 		);
 	}
@@ -1298,7 +1298,7 @@ class AntiVirus {
 							<input type="submit" class="button button-primary" value="<?php _e('Save Changes') ?>" />
 						</th>
 						<td>
-							<?php if ( get_locale() == 'de_DE' ) { ?><a href="http://playground.ebiene.de/antivirus-wordpress-plugin/" target="_blank">Handbuch</a> &bull; <?php } ?><a href="https://flattr.com/t/1322865" target="_blank">Flattr</a> &bull; <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=5RDDW9FEHGLG6" target="_blank">PayPal</a>
+							<?php if ( get_locale() == 'de_DE' ) { ?><a href="http://playground.ebiene.de/antivirus-wordpress-plugin/" target="_blank">Handbuch</a> &bull; <?php } ?><a href="https://flattr.com/t/1322865" target="_blank">Flattr</a> &bull; <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=ZAQUT9RLPW8QN" target="_blank">PayPal</a>
 						</td>
 					</tr>
 				</table>
