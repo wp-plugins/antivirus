@@ -429,9 +429,6 @@ class AntiVirus {
 				'https://sb-ssl.google.com/safebrowsing/api/lookup?client=wpantivirus&key=%s&appver=1.3.7&pver=3.1&url=%s',
 				'AIzaSyALNYwuy-Pidn7vx3-In-hU0zgMH5Wr42U',
 				urlencode( get_bloginfo('url') )
-			),
-			array(
-				'sslverify' => false
 			)
 		);
 
@@ -441,7 +438,7 @@ class AntiVirus {
 		}
 
 		/* All clear */
-		if ( wp_remote_retrieve_response_code($response) == 204 ) {
+		if ( wp_remote_retrieve_response_code($response) === 204 ) {
 			return;
 		}
 
@@ -595,10 +592,10 @@ class AntiVirus {
 			'av_settings',
 			array(
 				'nonce' => wp_create_nonce('av_ajax_nonce'),
-				'theme'	=> urlencode(self::_get_theme_name()),
-				'msg_1'	=> esc_html__('There is no virus', 'antivirus'),
-				'msg_2' => esc_html__('View line', 'antivirus'),
-				'msg_3' => esc_html__('Scan finished', 'antivirus')
+				'theme'	=> esc_js(urlencode(self::_get_theme_name())),
+				'msg_1'	=> esc_js(__('There is no virus', 'antivirus')),
+				'msg_2' => esc_js(__('View line', 'antivirus')),
+				'msg_3' => esc_js(__('Scan finished', 'antivirus'))
 			)
 		);
 	}
@@ -810,19 +807,11 @@ class AntiVirus {
 
 		/* Ausgabe starten */
 		if ( $values ) {
-			$output = sprintf(
-				"['%s']",
-				implode("', '", $values)
-			);
-
-			/* Header senden */
-			header('Content-Type: plain/text');
-
-			/* Ausgeben */
-			echo sprintf(
-				'{data:%s, nonce:"%s"}',
-				$output,
-				$_POST['_ajax_nonce']
+			wp_send_json(
+				array(
+					'data'  => array_values($values),
+					'nonce' => $_POST['_ajax_nonce']
+				)
 			);
 		}
 
